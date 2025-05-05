@@ -19,18 +19,36 @@ public class BlackJackScript : MonoBehaviour
     public int betAmount = 0;
     public GameObject cardPrefab;
     public Transform spawnPosition;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        clientCards = new List<BlackJackCardScript>();
+        userCards = new List<BlackJackCardScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameStarted)
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
 
+            //startGame(0);
+            Pull();
+        }
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+
+            //startGame(0);
+            print("iiiiiii");
+            AddCardToClient();
+        }
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+
+            //startGame(0);
+            print("iiiiiii");
+            AddCardToUser();
         }
     }
 
@@ -127,22 +145,7 @@ public class BlackJackScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
+        
 
-            //startGame(0);
-            Pull();
-        }
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-
-            //startGame(0);
-            print("iiiiiii");
-            AddCardToClient();
-        }
-        //if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        //{
-        //    gameStarted = false;
-        //}
     }
 }
