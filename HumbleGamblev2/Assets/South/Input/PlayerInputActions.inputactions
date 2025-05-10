@@ -1,0 +1,54 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "NPC",
+            "id": "a0a37163-73b0-4099-9c44-8eefbe75397e",
+            "actions": [
+                {
+                    "name": "MoveCommand",
+                    "type": "Button",
+                    "id": "792ac8bf-99cb-481c-9dfa-e23ca2472e8e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StopCommand",
+                    "type": "Button",
+                    "id": "55265cd4-d036-4d7c-ac95-524e873d3ae6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e877c6a7-d257-4901-8fb3-04d0e454ef1b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveCommand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c396a38d-9a90-428c-9fa2-9d2aae9538f9",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StopCommand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
