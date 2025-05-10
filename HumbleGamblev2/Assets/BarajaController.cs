@@ -28,7 +28,7 @@ public class BarajaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HandleGripAction(leftInteractor, ref hasLeftPressed, gripActionLeft, leftController);
+        HandleGripAction(leftInteractor, ref hasLeftPressed, gripActionLeft, leftController);
         HandleGripAction(rightInteractor, ref hasRightPressed, gripActionRight, rightController);
     }
 
