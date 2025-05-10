@@ -76,7 +76,7 @@ public class BlackJackScript : MonoBehaviour
         currentCardInHand = null;
     }
 
-    void AddCardToClient()
+    public void AddCardToClient()
     {
         if(clientTurn)
         {
@@ -95,7 +95,7 @@ public class BlackJackScript : MonoBehaviour
         
     }
 
-    void AddCardToUser()
+    public void AddCardToUser()
     {
         if (!clientTurn)
         {
