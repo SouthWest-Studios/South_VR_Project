@@ -23,14 +23,15 @@ public class CardsZoneSrcipt : MonoBehaviour
         {
             if(other.CompareTag("Card"))
             {
-                blackJackScript.AddCardToClient();
+
+                blackJackScript.AddCardToClient(other.GetComponent<BlackJackCardScript>());
             }
         }
         else
         {
             if (other.CompareTag("Card"))
             {
-                blackJackScript.AddCardToUser();
+                blackJackScript.AddCardToUser(other.GetComponent<BlackJackCardScript>());
             }
         }
     }
@@ -41,14 +42,14 @@ public class CardsZoneSrcipt : MonoBehaviour
         {
             if (other.CompareTag("Card"))
             {
-                blackJackScript.RemoveCardToClient();
+                blackJackScript.RemoveCardToClient(other.GetComponent<BlackJackCardScript>());
             }
         }
         else
         {
             if (other.CompareTag("Card"))
             {
-                blackJackScript.RemoveCardToUser();
+                blackJackScript.RemoveCardToUser(other.GetComponent<BlackJackCardScript>());
             }
         }
     }

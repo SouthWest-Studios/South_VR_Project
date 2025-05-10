@@ -37,25 +37,11 @@ public class BlackJackScript : MonoBehaviour
         //{
         //    Pull();
         //}
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current.zKey.wasPressedThisFrame)
         {
 
             //startGame(0);
             Pull();
-        }
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-
-            //startGame(0);
-            print("iiiiiii");
-            AddCardToClient();
-        }
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-
-            //startGame(0);
-            print("iiiiiii");
-            AddCardToUser();
         }
     }
 
@@ -75,21 +61,21 @@ public class BlackJackScript : MonoBehaviour
         BlackJackCardScript cardScript = newCardGO.GetComponent<BlackJackCardScript>();
         cardScript.value = RandomValue(1, 11);
         cardScript.type = (CardType)RandomValue(0, 3);
-        currentCardInHand = cardScript;
+        //currentCardInHand = cardScript;
     }
 
     void ThrowCard()
     {
-        currentCardInHand = null;
+        //currentCardInHand = null;
     }
 
-    public void AddCardToClient()
+    public void AddCardToClient(BlackJackCardScript currentCard)
     {
         if(clientTurn)
         {
-            currentClientPoints = currentClientPoints + currentCardInHand.value;
+            currentClientPoints = currentClientPoints + currentCard.value;
             clientPointsText.text = currentClientPoints.ToString();
-            clientCards.Add(currentCardInHand);
+            clientCards.Add(currentCard);
             if(currentClientPoints > 21)
             {
                 EndGame(true);
@@ -102,25 +88,25 @@ public class BlackJackScript : MonoBehaviour
         
     }
 
-    public void RemoveCardToClient()
+    public void RemoveCardToClient(BlackJackCardScript currentCard)
     {
         if (clientTurn)
         {
-            currentClientPoints = currentClientPoints - currentCardInHand.value;
+            currentClientPoints = currentClientPoints - currentCard.value;
             clientPointsText.text = currentClientPoints.ToString();
-            clientCards.Remove(currentCardInHand);
+            clientCards.Remove(currentCard);
 
         }
 
     }
 
-    public void AddCardToUser()
+    public void AddCardToUser(BlackJackCardScript currentCard)
     {
         if (!clientTurn)
         {
-            currentUserPoints = currentUserPoints + currentCardInHand.value;
+            currentUserPoints = currentUserPoints + currentCard.value;
             userPointsText.text = currentUserPoints.ToString();
-            userCards.Add(currentCardInHand);
+            userCards.Add(currentCard);
             if (currentUserPoints > 21)
             {
                 EndGame(false);
@@ -139,13 +125,13 @@ public class BlackJackScript : MonoBehaviour
         }
     }
 
-    public void RemoveCardToUser()
+    public void RemoveCardToUser(BlackJackCardScript currentCard)
     {
         if (!clientTurn)
         {
-            currentUserPoints = currentUserPoints - currentCardInHand.value;
+            currentUserPoints = currentUserPoints - currentCard.value;
             userPointsText.text = currentUserPoints.ToString();
-            userCards.Remove(currentCardInHand);
+            userCards.Remove(currentCard);
             
         }
     }
