@@ -108,6 +108,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GoToTarget0"",
+                    ""type"": ""Button"",
+                    ""id"": ""66bc0cc8-3c18-409a-8da9-1a72661e600b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GoToTarget1"",
+                    ""type"": ""Button"",
+                    ""id"": ""eafdb1df-6822-4541-92f4-781e60ad4df6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""StopCommand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecab86b9-99dd-4dcf-baf2-e6d736b6e920"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoToTarget0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffb1bf73-917c-491f-95ab-10b0c9acdf54"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoToTarget1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,6 +182,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_NPC = asset.FindActionMap("NPC", throwIfNotFound: true);
         m_NPC_MoveCommand = m_NPC.FindAction("MoveCommand", throwIfNotFound: true);
         m_NPC_StopCommand = m_NPC.FindAction("StopCommand", throwIfNotFound: true);
+        m_NPC_GoToTarget0 = m_NPC.FindAction("GoToTarget0", throwIfNotFound: true);
+        m_NPC_GoToTarget1 = m_NPC.FindAction("GoToTarget1", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -224,6 +266,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<INPCActions> m_NPCActionsCallbackInterfaces = new List<INPCActions>();
     private readonly InputAction m_NPC_MoveCommand;
     private readonly InputAction m_NPC_StopCommand;
+    private readonly InputAction m_NPC_GoToTarget0;
+    private readonly InputAction m_NPC_GoToTarget1;
     /// <summary>
     /// Provides access to input actions defined in input action map "NPC".
     /// </summary>
@@ -243,6 +287,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "NPC/StopCommand".
         /// </summary>
         public InputAction @StopCommand => m_Wrapper.m_NPC_StopCommand;
+        /// <summary>
+        /// Provides access to the underlying input action "NPC/GoToTarget0".
+        /// </summary>
+        public InputAction @GoToTarget0 => m_Wrapper.m_NPC_GoToTarget0;
+        /// <summary>
+        /// Provides access to the underlying input action "NPC/GoToTarget1".
+        /// </summary>
+        public InputAction @GoToTarget1 => m_Wrapper.m_NPC_GoToTarget1;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -275,6 +327,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @StopCommand.started += instance.OnStopCommand;
             @StopCommand.performed += instance.OnStopCommand;
             @StopCommand.canceled += instance.OnStopCommand;
+            @GoToTarget0.started += instance.OnGoToTarget0;
+            @GoToTarget0.performed += instance.OnGoToTarget0;
+            @GoToTarget0.canceled += instance.OnGoToTarget0;
+            @GoToTarget1.started += instance.OnGoToTarget1;
+            @GoToTarget1.performed += instance.OnGoToTarget1;
+            @GoToTarget1.canceled += instance.OnGoToTarget1;
         }
 
         /// <summary>
@@ -292,6 +350,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @StopCommand.started -= instance.OnStopCommand;
             @StopCommand.performed -= instance.OnStopCommand;
             @StopCommand.canceled -= instance.OnStopCommand;
+            @GoToTarget0.started -= instance.OnGoToTarget0;
+            @GoToTarget0.performed -= instance.OnGoToTarget0;
+            @GoToTarget0.canceled -= instance.OnGoToTarget0;
+            @GoToTarget1.started -= instance.OnGoToTarget1;
+            @GoToTarget1.performed -= instance.OnGoToTarget1;
+            @GoToTarget1.canceled -= instance.OnGoToTarget1;
         }
 
         /// <summary>
@@ -346,5 +410,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnStopCommand(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GoToTarget0" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGoToTarget0(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GoToTarget1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGoToTarget1(InputAction.CallbackContext context);
     }
 }
