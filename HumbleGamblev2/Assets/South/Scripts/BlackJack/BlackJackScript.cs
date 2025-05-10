@@ -43,6 +43,7 @@ public class BlackJackScript : MonoBehaviour
             //startGame(0);
             Pull();
         }
+
     }
 
     void startGame(int bet)
