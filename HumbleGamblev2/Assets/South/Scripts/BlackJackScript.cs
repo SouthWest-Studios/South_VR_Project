@@ -95,6 +95,18 @@ public class BlackJackScript : MonoBehaviour
         
     }
 
+    public void RemoveCardToClient()
+    {
+        if (clientTurn)
+        {
+            currentClientPoints = currentClientPoints - currentCardInHand.value;
+            clientPointsText.text = currentClientPoints.ToString();
+            clientCards.Remove(currentCardInHand);
+
+        }
+
+    }
+
     public void AddCardToUser()
     {
         if (!clientTurn)

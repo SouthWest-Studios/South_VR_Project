@@ -34,4 +34,22 @@ public class CardsZoneSrcipt : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (this.name == "ClientZone")
+        {
+            if (other.CompareTag("Card"))
+            {
+                blackJackScript.AddCardToClient();
+            }
+        }
+        else
+        {
+            if (other.CompareTag("Card"))
+            {
+                blackJackScript.AddCardToUser();
+            }
+        }
+    }
 }
