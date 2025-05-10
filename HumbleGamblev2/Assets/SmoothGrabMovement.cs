@@ -18,7 +18,7 @@ public class SmoothGrabMovement : MonoBehaviour
         grabInteractable.selectExited.AddListener(OnRelease);
     }
 
-    private void OnGrab(SelectEnterEventArgs args)
+    public void OnGrab(SelectEnterEventArgs args)
     {
         targetHand = args.interactorObject.transform;
         isMovingToHand = true;
@@ -36,7 +36,7 @@ public class SmoothGrabMovement : MonoBehaviour
         grabInteractable.attachTransform = attachPoint.transform;
     }
 
-    private void OnRelease(SelectExitEventArgs args)
+    public void OnRelease(SelectExitEventArgs args)
     {
         isMovingToHand = false;
         GetComponent<Rigidbody>().isKinematic = false;
@@ -47,6 +47,8 @@ public class SmoothGrabMovement : MonoBehaviour
             Destroy(grabInteractable.attachTransform.gameObject);
             grabInteractable.attachTransform = null;
         }
+        grabInteractable.enabled = false;
+        grabInteractable.enabled = true;
     }
 
     void Update()

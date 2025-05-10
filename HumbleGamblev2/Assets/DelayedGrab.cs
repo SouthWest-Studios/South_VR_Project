@@ -20,7 +20,7 @@ public class DelayedGrab : MonoBehaviour
         grabInteractable.selectEntered.AddListener(OnSelectEntered);
     }
 
-    private void OnSelectEntered(SelectEnterEventArgs args)
+    public void OnSelectEntered(SelectEnterEventArgs args)
     {
         if (isBeingSummoned) return;
 
