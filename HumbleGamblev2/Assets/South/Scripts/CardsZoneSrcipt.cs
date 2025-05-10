@@ -41,14 +41,14 @@ public class CardsZoneSrcipt : MonoBehaviour
         {
             if (other.CompareTag("Card"))
             {
-                blackJackScript.AddCardToClient();
+                blackJackScript.RemoveCardToClient();
             }
         }
         else
         {
             if (other.CompareTag("Card"))
             {
-                blackJackScript.AddCardToUser();
+                blackJackScript.RemoveCardToUser();
             }
         }
     }

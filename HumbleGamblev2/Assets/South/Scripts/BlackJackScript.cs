@@ -20,6 +20,8 @@ public class BlackJackScript : MonoBehaviour
     public GameObject cardPrefab;
     public Transform spawnPosition;
 
+    [SerializeField] private InputActionProperty gripAction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,11 @@ public class BlackJackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //float gripValue = gripAction.action.ReadValue<float>();
+        //if(gripValue > 0)
+        //{
+        //    Pull();
+        //}
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
 
@@ -129,6 +136,17 @@ public class BlackJackScript : MonoBehaviour
                     EndGame(false);
                 }
             }
+        }
+    }
+
+    public void RemoveCardToUser()
+    {
+        if (!clientTurn)
+        {
+            currentUserPoints = currentUserPoints - currentCardInHand.value;
+            userPointsText.text = currentUserPoints.ToString();
+            userCards.Remove(currentCardInHand);
+            
         }
     }
 
