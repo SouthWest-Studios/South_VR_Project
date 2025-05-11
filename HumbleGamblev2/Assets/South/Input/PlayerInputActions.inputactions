@@ -2,6 +2,98 @@
     "name": "PlayerInputActions",
     "maps": [
         {
+            "name": "Player",
+            "id": "b27e7fcc-1a56-4058-837b-0c767edcd4bb",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "ec0ff327-d902-4468-9c7b-0730c44c74dd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "da6a7641-e02f-44a0-bdb0-db6a1b96ef95",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "582181ca-a634-4bfe-a8ed-3706aaf35262",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f048f988-a963-4f79-b217-8e758da453fb",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "8a1ec9da-3514-4286-a2be-c10fdefec163",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "a7776280-1185-47ca-b430-ad498582d054",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "e54dc5f8-8eaa-4719-9ca5-c8cea0cf6137",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f32a8270-136f-45e2-a137-d589686bb72e",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "NPC",
             "id": "a0a37163-73b0-4099-9c44-8eefbe75397e",
             "actions": [
@@ -36,6 +128,15 @@
                     "name": "GoToTarget1",
                     "type": "Button",
                     "id": "eafdb1df-6822-4541-92f4-781e60ad4df6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "02019a48-035d-4a51-8935-5d9ea5a79e17",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -84,6 +185,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "GoToTarget1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c91f2da-a8e8-403e-892f-bb916fb2e595",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
