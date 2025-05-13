@@ -86,6 +86,11 @@ public class SlotMachineScript : MonoBehaviour
 
     public void EndGame()
     {
+
+        // 2 -- Cereza
+        // 1 -- Uva
+        // 3 -- 7
+
         Dictionary<int, int> resultCounts = new Dictionary<int, int>();
         bool hasWon = false;
 
