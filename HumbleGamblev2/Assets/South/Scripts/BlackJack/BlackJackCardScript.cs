@@ -31,22 +31,83 @@ public class BlackJackCardScript : MonoBehaviour
         {
             Texture2D texture = null;
 
-            if (id >= 1 && id <= 10)
+            if(type == CardType.Picas)
             {
-                texture = blackJack.spadesTextures[id - 1];
+                if (id >= 1 && id <= 10)
+                {
+                    texture = blackJack.spadesTextures[id - 1];
+                }
+                else if (id == 11) // J
+                {
+                    texture = blackJack.spadesTextures[10];
+                }
+                else if (id == 12) // Q
+                {
+                    texture = blackJack.spadesTextures[11];
+                }
+                else if (id == 13) // K
+                {
+                    texture = blackJack.spadesTextures[12];
+                }
             }
-            else if (id == 11) // J
+            else if (type == CardType.Diamantes)
             {
-                texture = blackJack.spadesTextures[10];
+                if (id >= 1 && id <= 10)
+                {
+                    texture = blackJack.diamondsTextures[id - 1];
+                }
+                else if (id == 11) // J
+                {
+                    texture = blackJack.diamondsTextures[10];
+                }
+                else if (id == 12) // Q
+                {
+                    texture = blackJack.diamondsTextures[11];
+                }
+                else if (id == 13) // K
+                {
+                    texture = blackJack.diamondsTextures[12];
+                }
             }
-            else if (id == 12) // Q
+            else if (type == CardType.Treboles)
             {
-                texture = blackJack.spadesTextures[11];
+                if (id >= 1 && id <= 10)
+                {
+                    texture = blackJack.clubsTextures[id - 1];
+                }
+                else if (id == 11) // J
+                {
+                    texture = blackJack.clubsTextures[10];
+                }
+                else if (id == 12) // Q
+                {
+                    texture = blackJack.clubsTextures[11];
+                }
+                else if (id == 13) // K
+                {
+                    texture = blackJack.clubsTextures[12];
+                }
             }
-            else if (id == 13) // K
+            else if (type == CardType.Picas)
             {
-                texture = blackJack.spadesTextures[12];
+                if (id >= 1 && id <= 10)
+                {
+                    texture = blackJack.heartsTextures[id - 1];
+                }
+                else if (id == 11) // J
+                {
+                    texture = blackJack.heartsTextures[10];
+                }
+                else if (id == 12) // Q
+                {
+                    texture = blackJack.heartsTextures[11];
+                }
+                else if (id == 13) // K
+                {
+                    texture = blackJack.heartsTextures[12];
+                }
             }
+
 
             if (texture != null)
             {

@@ -16,11 +16,11 @@ public class RagdollMove : MonoBehaviour
     {
         inputActions = new PlayerInputActions();
 
-        inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+        //inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        //inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        inputActions.Player.Sprint.performed += ctx => isSprinting = true;
-        inputActions.Player.Sprint.canceled += ctx => isSprinting = false;
+        //inputActions.Player.Sprint.performed += ctx => isSprinting = true;
+        //inputActions.Player.Sprint.canceled += ctx => isSprinting = false;
     }
 
     private void OnEnable()
