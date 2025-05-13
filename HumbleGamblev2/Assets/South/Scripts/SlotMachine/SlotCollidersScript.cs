@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlotCollidersScript : MonoBehaviour
 {
-    public int slot = 1;
+    public int slot;
     public SlotCylinderScript slotCylinderScript;
     private void OnTriggerStay(Collider other)
     {

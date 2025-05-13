@@ -11,8 +11,7 @@ public class SlotMachineScript : MonoBehaviour
     private GameObject slot1;
     private GameObject slot2;
     private GameObject slot3;
-    private GameObject slot4;
-    private GameObject slot5;
+
     private List<GameObject> slotCylinders = new List<GameObject>();
     public Vector3 torqueForce;
 
@@ -25,13 +24,11 @@ public class SlotMachineScript : MonoBehaviour
             slotCylinders.Add(script.gameObject);
         }
 
-        if (slotCylinders.Count >= 4)
+        if (slotCylinders.Count >= 2)
         {
             slot1 = slotCylinders[0];
             slot2 = slotCylinders[1];
             slot3 = slotCylinders[2];
-            slot4 = slotCylinders[3];
-            slot5 = slotCylinders[4];
         }
         else
         {
@@ -72,15 +69,17 @@ public class SlotMachineScript : MonoBehaviour
 
     public void StartGame()
     {
+        int i = 1;
         foreach (GameObject obj in slotCylinders)
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 rb.AddTorque(torqueForce, ForceMode.Impulse);
-                float drag = Random.Range(0.15f, 0.2f);
-                rb.angularDrag = drag;
+                float drag = Random.Range(0.05f, 0.07f);
+                rb.angularDrag = drag / i;
             }
+            i++;
         }
         gameRunning = true;
     }
@@ -122,7 +121,6 @@ public class SlotMachineScript : MonoBehaviour
         foreach (GameObject obj in slotCylinders)
         {
             obj.GetComponent<SlotCylinderScript>().currentResult = 0;
-
         }
 
         gameRunning = false;

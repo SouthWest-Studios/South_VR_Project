@@ -29,10 +29,37 @@ public class SlotCylinderScript : MonoBehaviour
 
     public void SetCurrentResult(int result)
     {
-        if (rb.angularVelocity.magnitude < 0.02f && slotMachineScript.gameRunning)
+        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning)
         {
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
+            print(result);
+            Vector3 eulerRotation = rb.rotation.eulerAngles;
+
+            if (currentResult == 2)
+            {
+                eulerRotation.x = 0f;
+
+                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+            }
+            else if (currentResult == 1)
+            {
+                eulerRotation.x = 180;
+
+                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+            }
+            else if (currentResult == 3)
+            {
+                eulerRotation.x = 90f;
+
+                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+            }
+            else if (currentResult == 4)
+            {
+                eulerRotation.x = 270f;
+
+                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+            }
         }
 
     }
