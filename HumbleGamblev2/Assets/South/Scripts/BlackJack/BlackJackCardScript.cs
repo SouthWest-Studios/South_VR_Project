@@ -88,7 +88,7 @@ public class BlackJackCardScript : MonoBehaviour
                     texture = blackJack.clubsTextures[12];
                 }
             }
-            else if (type == CardType.Picas)
+            else if (type == CardType.Corazones)
             {
                 if (id >= 1 && id <= 10)
                 {

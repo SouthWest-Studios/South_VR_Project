@@ -19,10 +19,12 @@ public class BarajaController : MonoBehaviour
 
     private bool hasLeftPressed = false;
     private bool hasRightPressed = false;
+
+    BlackJackScript blackJackScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        blackJackScript = FindAnyObjectByType<BlackJackScript>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class BarajaController : MonoBehaviour
                 if (!hasPressed)
                 {
                     hasPressed = true;
-                    spawnedCard = Instantiate(card, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+                    spawnedCard = blackJackScript.Pull();
                     //AutoGrab(interactor);
                     GrabCard(interactor);
                 }

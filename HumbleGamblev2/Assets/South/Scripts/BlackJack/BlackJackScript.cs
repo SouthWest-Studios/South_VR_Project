@@ -122,21 +122,23 @@ public class BlackJackScript : MonoBehaviour
          clientTurn = false;
     }
 
-    void Pull()
+    public GameObject Pull()
     {
         GameObject newCardGO = Instantiate(cardPrefab, spawnPosition.position, Quaternion.identity);
         BlackJackCardScript cardScript = newCardGO.GetComponent<BlackJackCardScript>();
-        cardScript.id = RandomValue(1, 13);
-        if (cardScript.id < 11 )
+        newCardGO.GetComponent<BlackJackCardScript>().id = RandomValue(1, 13);
+        if (newCardGO.GetComponent<BlackJackCardScript>().id < 11 )
         {
-            cardScript.value = cardScript.id;
+            newCardGO.GetComponent<BlackJackCardScript>().value = newCardGO.GetComponent<BlackJackCardScript>().id;
         }
         else
         {
-            cardScript.value = 10;
+            newCardGO.GetComponent<BlackJackCardScript>().value = 10;
         }
-        cardScript.type = (CardType)RandomValue(0, 3);
+        newCardGO.GetComponent<BlackJackCardScript>().type = (CardType)RandomValue(0, 3);
         //currentCardInHand = cardScript;
+
+        return newCardGO;
     }
 
     void ThrowCard()
