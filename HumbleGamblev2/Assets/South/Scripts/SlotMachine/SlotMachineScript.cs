@@ -80,23 +80,27 @@ public class SlotMachineScript : MonoBehaviour
                 rb.angularDrag = drag / i;
             }
             i++;
+
         }
         gameRunning = true;
     }
 
     public void EndGame()
     {
-
-        // 2 -- Cereza
-        // 1 -- Uva
-        // 3 -- 7
+        // currentResult == 2 -- Cereza
+        // currentResult == 1 -- Uva
+        // currentResult == 3 -- 7
+        // currentResult == 4 -- Naranja
 
         Dictionary<int, int> resultCounts = new Dictionary<int, int>();
         bool hasWon = false;
 
+        List<int> results = new List<int>();
+
         foreach (GameObject obj in slotCylinders)
         {
             int result = obj.GetComponent<SlotCylinderScript>().currentResult;
+            results.Add(result);
 
             if (resultCounts.ContainsKey(result))
             {
@@ -108,13 +112,55 @@ public class SlotMachineScript : MonoBehaviour
             }
         }
 
-        foreach (var count in resultCounts.Values)
+        // Comprobar si hay tres sietes
+        if (resultCounts.ContainsKey(3) && resultCounts[3] == 3)
         {
-            if (count >= 3)
+            Debug.Log("¡Jackpot! Tres sietes!");
+            hasWon = true;
+        }
+        else
+        {
+            foreach (var pair in resultCounts)
             {
-                Debug.Log("¡Victoria!");
+                if ((pair.Key == 1 || pair.Key == 2 || pair.Key == 4) && pair.Value == 3)
+                {
+                    Debug.Log(" ¡Premio por 3 frutas iguales!");
+                    hasWon = true;
+                    break;
+                }
+            }
+        }
+        // Comprobar si hay tres iguales (frutas o cualquier otro)
+        //else
+        //{
+        //    foreach (var pair in resultCounts)
+        //    {
+        //        if (pair.Value == 3)
+        //        {
+        //            Debug.Log("¡Victoria por 3 iguales!");
+        //            hasWon = true;
+        //            break;
+        //        }
+        //    }
+        //}
+
+        // Comprobar si hay tres frutas diferentes (uva, cereza y naranja)
+        if (!hasWon)
+        {
+            HashSet<int> fruitResults = new HashSet<int>();
+
+            foreach (int result in results)
+            {
+                if (result == 1 || result == 2 || result == 4) // frutas
+                {
+                    fruitResults.Add(result);
+                }
+            }
+
+            if (fruitResults.Count == 3)
+            {
+                Debug.Log("¡Victoria por 3 frutas diferentes!");
                 hasWon = true;
-                break;
             }
         }
 
@@ -123,6 +169,7 @@ public class SlotMachineScript : MonoBehaviour
             Debug.Log("Derrota");
         }
 
+        // Reset
         foreach (GameObject obj in slotCylinders)
         {
             obj.GetComponent<SlotCylinderScript>().currentResult = 0;
@@ -130,5 +177,7 @@ public class SlotMachineScript : MonoBehaviour
 
         gameRunning = false;
     }
+
+
 
 }

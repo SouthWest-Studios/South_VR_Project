@@ -1731,23 +1731,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0032018286
+      value: 0.00453798
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.003215829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7086404
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.70555526
+      value: 0.99998975
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2bb46275a748e8c4db9ed270914cc1fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -5477,9 +5477,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec93717f5f2f3e34199446b8f738877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
-  jumpForce: 5
   hips: {fileID: 1090863857}
+  spineJoint: {fileID: 0}
+  leftLegJoint: {fileID: 0}
+  rightLegJoint: {fileID: 0}
+  playerCamera: {fileID: 0}
+  leftFoot: {fileID: 0}
+  rightFoot: {fileID: 0}
+  moveForce: 500
+  maxSpeed: 4
+  sprintMultiplier: 1.5
+  rotationSpeed: 10
+  groundCheckDistance: 0.2
+  stepHeight: 0.3
+  stepSpeed: 4
+  legSwingAngle: 45
+  footGroundForce: 100
 --- !u!65 &1090863861
 BoxCollider:
   m_ObjectHideFlags: 0
