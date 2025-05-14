@@ -242,8 +242,8 @@ ConfigurableJoint:
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -255,11 +255,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: 0
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 60
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -277,9 +277,9 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 3.4028233e+38
+    positionSpring: 1500
+    positionDamper: 100
+    maximumForce: 2000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
@@ -1523,6 +1523,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &507022409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4621919553704620041, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+  m_PrefabInstance: {fileID: 1621274920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &507022410 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2616802031807042305, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+  m_PrefabInstance: {fileID: 1621274920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &507022411
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507022409}
+  m_Material: {fileID: 13400000, guid: 6f643025a4f52404189a2112295d5789, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: -0.05}
 --- !u!1 &627015728 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3650762234163030689, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
@@ -1792,9 +1823,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec93717f5f2f3e34199446b8f738877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
-  jumpForce: 5
   hips: {fileID: 627015730}
+  spineJoint: {fileID: 1847860599}
+  leftLegJoint: {fileID: 1949023687}
+  rightLegJoint: {fileID: 724408}
+  playerCamera: {fileID: 236718717}
+  leftFoot: {fileID: 1885591198}
+  rightFoot: {fileID: 507022410}
+  moveForce: 40
+  maxSpeed: 50
+  sprintMultiplier: 2
+  rotationSpeed: 8
+  groundCheckDistance: 0.2
+  stepHeight: 0.3
+  stepSpeed: 4
+  legSwingAngle: 25
+  footGroundForce: 10
 --- !u!1 &1066768840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,6 +2274,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4063008320748541188, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1711299891}
+    - targetCorrespondingSourceObject: {fileID: 292592246418032870, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885591199}
     - targetCorrespondingSourceObject: {fileID: 1925819940828539958, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 724406}
@@ -2254,6 +2301,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7455908538405045305, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2012578001}
+    - targetCorrespondingSourceObject: {fileID: -4621919553704620041, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 507022411}
     - targetCorrespondingSourceObject: {fileID: -1110304933352051782, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1847860597}
@@ -2447,8 +2497,8 @@ ConfigurableJoint:
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -2460,11 +2510,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: 0
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 60
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -2482,9 +2532,9 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 3.4028233e+38
+    positionSpring: 1500
+    positionDamper: 100
+    maximumForce: 2000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
@@ -2935,6 +2985,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &1885591197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 292592246418032870, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+  m_PrefabInstance: {fileID: 1621274920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1885591198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6868899137644754808, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
+  m_PrefabInstance: {fileID: 1621274920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1885591199
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885591197}
+  m_Material: {fileID: 13400000, guid: 6f643025a4f52404189a2112295d5789, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: -0.05}
 --- !u!1 &1949023681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 82500465729466016, guid: 3686429ea7a48604188c6ef1cd7a950e, type: 3}
@@ -3055,8 +3136,8 @@ ConfigurableJoint:
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3068,11 +3149,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: 0
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 60
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -3090,9 +3171,9 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 3.4028233e+38
+    positionSpring: 1500
+    positionDamper: 100
+    maximumForce: 2000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
@@ -3360,8 +3441,8 @@ ConfigurableJoint:
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3373,11 +3454,11 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: 0
+    limit: -60
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 60
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
@@ -3395,9 +3476,9 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 3.4028233e+38
+    positionSpring: 1500
+    positionDamper: 100
+    maximumForce: 2000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
