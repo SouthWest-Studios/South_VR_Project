@@ -20,6 +20,9 @@ public class BarajaController : MonoBehaviour
     private bool hasLeftPressed = false;
     private bool hasRightPressed = false;
 
+    private bool prevLeftPressed = false;
+    private bool prevRightPressed = false;
+
     BlackJackScript blackJackScript;
     // Start is called before the first frame update
     void Start()
@@ -30,11 +33,18 @@ public class BarajaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleGripAction(leftInteractor, ref hasLeftPressed, gripActionLeft, leftController);
-        HandleGripAction(rightInteractor, ref hasRightPressed, gripActionRight, rightController);
+        
+
+  
+        HandleGripAction(leftInteractor, ref hasLeftPressed, ref prevLeftPressed, gripActionLeft, leftController);
+        HandleGripAction(rightInteractor, ref hasRightPressed, ref prevRightPressed, gripActionRight, rightController);
+
+        prevLeftPressed = (gripActionLeft.action.ReadValue<float>() > 0.8f);
+        prevRightPressed = (gripActionRight.action.ReadValue<float>() > 0.8f);
+
     }
 
-    private void HandleGripAction(XRBaseInteractor interactor, ref bool hasPressed, InputActionProperty gripAction, Transform controller)
+    private void HandleGripAction(XRBaseInteractor interactor, ref bool hasPressed,ref bool prevPressed, InputActionProperty gripAction, Transform controller)
     {
         // Calculate the distance between the controller and the object
 
@@ -43,7 +53,8 @@ public class BarajaController : MonoBehaviour
         {
             if (gripAction.action.ReadValue<float>() > 0.8f)
             {
-                if (!hasPressed)
+                Debug.Log("haspressed: " + hasPressed + " __ prevpressed: " + prevPressed);
+                if (!hasPressed && !prevPressed)
                 {
                     hasPressed = true;
                     spawnedCard = blackJackScript.Pull();
