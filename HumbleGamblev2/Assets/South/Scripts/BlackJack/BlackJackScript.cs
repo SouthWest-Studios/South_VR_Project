@@ -15,6 +15,7 @@ public class BlackJackScript : MonoBehaviour
     public BlackJackCardScript currentCardInHand;
     private List<BlackJackCardScript> clientCards;
     private List<BlackJackCardScript> userCards;
+    public List<GameObject> cardGameObjects;
     public bool clientTurn = true;
     public int betAmount = 0;
     public GameObject cardPrefab;
@@ -137,6 +138,7 @@ public class BlackJackScript : MonoBehaviour
         }
         newCardGO.GetComponent<BlackJackCardScript>().type = (CardType)RandomValue(0, 3);
         //currentCardInHand = cardScript;
+        cardGameObjects.Add(newCardGO);
 
         return newCardGO;
     }
@@ -227,6 +229,12 @@ public class BlackJackScript : MonoBehaviour
         currentUserPoints = 0;
         userCards.Clear();
         clientCards.Clear();
+        foreach (GameObject card in cardGameObjects)
+        {
+            GameObject.Destroy(card); // o DestroyImmediate(card); si estás en el editor
+        }
+
+        cardGameObjects.Clear();
         clientTurn = true;
     }
 
