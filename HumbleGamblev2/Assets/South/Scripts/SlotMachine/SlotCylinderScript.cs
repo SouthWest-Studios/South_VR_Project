@@ -39,23 +39,24 @@ public class SlotCylinderScript : MonoBehaviour
             if (currentResult == 2)
             {
                 eulerRotation.x = 0f;
-                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+                transform.localEulerAngles = new Vector3(0f, 0f, 180f);
             }
             else if (currentResult == 1)
             {
                 eulerRotation.x = 180;
-                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+                transform.localEulerAngles = new Vector3(180f, 0f, 180f);
             }
             else if (currentResult == 3)
             {
                 eulerRotation.x = 90f;
-                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+                transform.localEulerAngles = new Vector3(90f, 0f, 180f);
             }
             else if (currentResult == 4)
             {
                 eulerRotation.x = 270f;
-                rb.MoveRotation(Quaternion.Euler(eulerRotation));
+                transform.localEulerAngles = new Vector3(270f, 0f, 180f);
             }
+
         }
 
     }
