@@ -29,7 +29,7 @@ public class SlotCylinderScript : MonoBehaviour
 
     public void SetCurrentResult(int result)
     {
-        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning)
+        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true)
         {
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
@@ -39,25 +39,21 @@ public class SlotCylinderScript : MonoBehaviour
             if (currentResult == 2)
             {
                 eulerRotation.x = 0f;
-
                 rb.MoveRotation(Quaternion.Euler(eulerRotation));
             }
             else if (currentResult == 1)
             {
                 eulerRotation.x = 180;
-
                 rb.MoveRotation(Quaternion.Euler(eulerRotation));
             }
             else if (currentResult == 3)
             {
                 eulerRotation.x = 90f;
-
                 rb.MoveRotation(Quaternion.Euler(eulerRotation));
             }
             else if (currentResult == 4)
             {
                 eulerRotation.x = 270f;
-
                 rb.MoveRotation(Quaternion.Euler(eulerRotation));
             }
         }
