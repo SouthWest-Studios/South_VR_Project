@@ -222,7 +222,7 @@ public class BlackJackScript : MonoBehaviour
         if (dealerWinner)
         {
             print("Ha ganado la casa");
-            Instantiate(cash, this.transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+            Instantiate(cash, this.transform.position + new Vector3(1, 1, 0), Quaternion.identity);
         }
         else
         {
