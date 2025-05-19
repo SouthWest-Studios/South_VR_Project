@@ -28,6 +28,8 @@ public class BlackJackScript : MonoBehaviour
     public Texture2D[] diamondsTextures;
     public Texture2D[] heartsTextures;
 
+    public GameObject cash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -220,6 +222,7 @@ public class BlackJackScript : MonoBehaviour
         if (dealerWinner)
         {
             print("Ha ganado la casa");
+            Instantiate(cash, this.transform.position + new Vector3(0, -1, 0), Quaternion.identity);
         }
         else
         {

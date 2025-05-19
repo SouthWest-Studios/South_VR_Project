@@ -15,6 +15,9 @@ public class SlotMachineScript : MonoBehaviour
     private List<GameObject> slotCylinders = new List<GameObject>();
     public Vector3 torqueForce;
 
+    public GameObject cash;
+    
+
     void Start()
     {
         SlotCylinderScript[] allSlotScripts = GetComponentsInChildren<SlotCylinderScript>();
@@ -117,6 +120,7 @@ public class SlotMachineScript : MonoBehaviour
         {
             Debug.Log("¡Jackpot! Tres sietes!");
             hasWon = true;
+            Instantiate(cash, this.transform.position + new Vector3(5, 0, 5), Quaternion.identity);
         }
         else
         {
@@ -125,6 +129,7 @@ public class SlotMachineScript : MonoBehaviour
                 if ((pair.Key == 1 || pair.Key == 2 || pair.Key == 4) && pair.Value == 3)
                 {
                     Debug.Log(" ¡Premio por 3 frutas iguales!");
+                    Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                     hasWon = true;
                     break;
                 }
@@ -160,6 +165,7 @@ public class SlotMachineScript : MonoBehaviour
             if (fruitResults.Count == 3)
             {
                 Debug.Log("¡Victoria por 3 frutas diferentes!");
+                Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                 hasWon = true;
             }
         }
@@ -167,6 +173,7 @@ public class SlotMachineScript : MonoBehaviour
         if (!hasWon)
         {
             Debug.Log("Derrota");
+            
         }
 
         // Reset
