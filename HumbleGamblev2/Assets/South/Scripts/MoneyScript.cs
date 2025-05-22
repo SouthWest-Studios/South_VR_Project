@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoneyScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int currentMoney;
     void Start()
     {
         
@@ -14,5 +14,10 @@ public class MoneyScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddMoney(int moneyToAdd)
+    {
+        currentMoney += moneyToAdd;
     }
 }

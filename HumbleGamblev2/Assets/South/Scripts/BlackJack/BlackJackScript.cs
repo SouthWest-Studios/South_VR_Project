@@ -7,7 +7,7 @@ using static BlackJackCardScript;
 
 public class BlackJackScript : MonoBehaviour
 {
-    bool gameStarted = true;
+    public bool gameStarted = true;
     public int currentUserPoints = 0;
     public TextMeshProUGUI userPointsText;
     public int currentClientPoints = 0;
@@ -29,6 +29,8 @@ public class BlackJackScript : MonoBehaviour
     public Texture2D[] heartsTextures;
 
     public GameObject cash;
+
+    GameInteraction currentClient;
 
     // Start is called before the first frame update
     void Start()
@@ -115,9 +117,12 @@ public class BlackJackScript : MonoBehaviour
 
     }
 
-    void startGame(int bet)
+    public void startGame(GameInteraction client, int bet)
     {
         betAmount = bet;
+        gameStarted = true;
+
+        currentClient = client;
     }
 
     void Stand()
@@ -127,6 +132,8 @@ public class BlackJackScript : MonoBehaviour
 
     public GameObject Pull()
     {
+       
+
         GameObject newCardGO = Instantiate(cardPrefab, spawnPosition.position, Quaternion.identity);
         BlackJackCardScript cardScript = newCardGO.GetComponent<BlackJackCardScript>();
         newCardGO.GetComponent<BlackJackCardScript>().id = RandomValue(1, 13);
@@ -143,6 +150,7 @@ public class BlackJackScript : MonoBehaviour
         cardGameObjects.Add(newCardGO);
 
         return newCardGO;
+        
     }
 
     void ThrowCard()
@@ -152,20 +160,24 @@ public class BlackJackScript : MonoBehaviour
 
     public void AddCardToClient(BlackJackCardScript currentCard)
     {
-        if(clientTurn)
+        if(gameStarted)
         {
-            currentClientPoints = currentClientPoints + currentCard.value;
-            clientPointsText.text = currentClientPoints.ToString();
-            clientCards.Add(currentCard);
-            if(currentClientPoints > 21)
+            if (clientTurn)
             {
-                EndGame(true);
-            }
-            else if(currentClientPoints > 16)
-            {
-                Stand();
+                currentClientPoints = currentClientPoints + currentCard.value;
+                clientPointsText.text = currentClientPoints.ToString();
+                clientCards.Add(currentCard);
+                if (currentClientPoints > 21)
+                {
+                    EndGame(true);
+                }
+                else if (currentClientPoints > 16)
+                {
+                    Stand();
+                }
             }
         }
+        
         
     }
 
@@ -232,6 +244,7 @@ public class BlackJackScript : MonoBehaviour
         currentUserPoints = 0;
         userCards.Clear();
         clientCards.Clear();
+        betAmount = 0;
         foreach (GameObject card in cardGameObjects)
         {
             GameObject.Destroy(card); // o DestroyImmediate(card); si estás en el editor
@@ -239,6 +252,9 @@ public class BlackJackScript : MonoBehaviour
 
         cardGameObjects.Clear();
         clientTurn = true;
+        gameStarted = false;
+        currentClient.EndGameInteraction();
+        currentClient = null;
     }
 
     int RandomValue(int min, int max)
