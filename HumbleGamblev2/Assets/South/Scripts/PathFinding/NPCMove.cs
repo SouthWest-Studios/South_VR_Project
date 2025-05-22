@@ -9,6 +9,7 @@ public class NPCMove : MonoBehaviour
 
     // Hacerlo público para poder accederlo desde otro script
     public bool isInteractingWithTarget = false;
+    public bool hasEndedInteractingWithTarget = false;
 
     GameInteraction gameInteractionScript;
 
@@ -44,10 +45,11 @@ public class NPCMove : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= reachThreshold && !isInteractingWithTarget)
         {
             isInteractingWithTarget = true;  // Marca como interactuando con el waypoint actual
+            hasEndedInteractingWithTarget = false;
         }
 
         // Cuando ha interactuado (llegado) y se le permite pasar al siguiente waypoint
-        if (isInteractingWithTarget)
+        if (isInteractingWithTarget && hasEndedInteractingWithTarget)
         {
             // Se puede esperar un poco o hacer alguna acción, según la lógica
             // Luego, pasa al siguiente waypoint
