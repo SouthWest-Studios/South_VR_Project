@@ -17,6 +17,8 @@ public class SlotCylinderScript : MonoBehaviour
 
     public SlotSymbol currentSymbol;
 
+    bool grabing = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +26,10 @@ public class SlotCylinderScript : MonoBehaviour
     }
     void Update()
     {
-        
+        if (rb.useGravity == false)
+        {
+            grabing = true;
+        }
     }
 
     public void SetCurrentResult(int result)
@@ -36,25 +41,35 @@ public class SlotCylinderScript : MonoBehaviour
             print(result);
             Vector3 eulerRotation = rb.rotation.eulerAngles;
 
-            if (currentResult == 2)
+            if (grabing == true)
             {
-                eulerRotation.x = 0f;
-                transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                print("aaaaaaaaaaaaaaaa");
+                transform.localRotation = Quaternion.Euler(0f, 90f, 180f);
             }
-            else if (currentResult == 1)
+            else
             {
-                eulerRotation.x = 180;
-                transform.localEulerAngles = new Vector3(180f, 0f, 180f);
-            }
-            else if (currentResult == 3)
-            {
-                eulerRotation.x = 90f;
-                transform.localEulerAngles = new Vector3(90f, 0f, 180f);
-            }
-            else if (currentResult == 4)
-            {
-                eulerRotation.x = 270f;
-                transform.localEulerAngles = new Vector3(270f, 0f, 180f);
+
+
+                if (currentResult == 2)
+                {
+                    eulerRotation.x = 0f;
+                    transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+                }
+                else if (currentResult == 1)
+                {
+                    eulerRotation.x = 180;
+                    transform.localRotation = Quaternion.Euler(180f, 0f, 180f);
+                }
+                else if (currentResult == 3)
+                {
+                    eulerRotation.x = 90f;
+                    transform.localRotation = Quaternion.Euler(90f, 0f, 180f);
+                }
+                else if (currentResult == 4)
+                {
+                    eulerRotation.x = 270f;
+                    transform.localRotation = Quaternion.Euler(270f, 0f, 180f);
+                }
             }
 
         }

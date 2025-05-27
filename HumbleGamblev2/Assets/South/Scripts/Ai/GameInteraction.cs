@@ -36,7 +36,7 @@ public class GameInteraction : MonoBehaviour
             if(!script.gameStarted && currentGame != "BlackJackTable")
             {
                 moneyToBet = UnityEngine.Random.Range(minMoneyToBet, maxMoneyToBet + 1);
-                script.startGame(moneyToBet);
+                script.startGame(this.GetComponent<GameInteraction>(), moneyToBet);
                 currentGame = other.tag;
             }
         }
