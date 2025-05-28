@@ -19,6 +19,8 @@ public class SlotCylinderScript : MonoBehaviour
 
     bool grabing = false;
 
+    public bool normalSpinDone = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,49 +31,74 @@ public class SlotCylinderScript : MonoBehaviour
         if (rb.useGravity == false)
         {
             grabing = true;
+            normalSpinDone = false;
         }
     }
 
     public void SetCurrentResult(int result)
     {
-        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true)
+        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
         {
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
-            print(result);
+            print("aaaaaaaaaaaaaaaaaa");
             Vector3 eulerRotation = rb.rotation.eulerAngles;
 
-            if (grabing == true)
-            {
-                print("aaaaaaaaaaaaaaaa");
-                transform.localRotation = Quaternion.Euler(0f, 90f, 180f);
-            }
-            else
-            {
+            
 
 
-                if (currentResult == 2)
+
+            if (currentResult == 2)
+            {
+                if (grabing == true)
                 {
-                    eulerRotation.x = 0f;
+                    transform.localRotation = Quaternion.Euler(0f, 90f, 180f);
+
+                }
+                else
+                {
                     transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
                 }
-                else if (currentResult == 1)
+                
+            }
+            else if (currentResult == 1)
+            {
+                if (grabing == true)
                 {
-                    eulerRotation.x = 180;
+                    transform.localRotation = Quaternion.Euler(180f, 90f, 180f);
+
+                }
+                else
+                {
                     transform.localRotation = Quaternion.Euler(180f, 0f, 180f);
                 }
-                else if (currentResult == 3)
+            }
+            else if (currentResult == 3)
+            {
+                if (grabing == true)
                 {
-                    eulerRotation.x = 90f;
+                    transform.localRotation = Quaternion.Euler(90f, 90f, 180f);
+
+                }
+                else
+                {
                     transform.localRotation = Quaternion.Euler(90f, 0f, 180f);
                 }
-                else if (currentResult == 4)
+            }
+            else if (currentResult == 4)
+            {
+                if (grabing == true)
                 {
-                    eulerRotation.x = 270f;
+                    transform.localRotation = Quaternion.Euler(270f, 90f, 180f);
+
+                }
+                else
+                {
                     transform.localRotation = Quaternion.Euler(270f, 0f, 180f);
                 }
             }
 
+            normalSpinDone = true;
         }
 
     }

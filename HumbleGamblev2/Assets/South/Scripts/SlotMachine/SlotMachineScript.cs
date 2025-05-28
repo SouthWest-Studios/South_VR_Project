@@ -180,6 +180,9 @@ public class SlotMachineScript : MonoBehaviour
         foreach (GameObject obj in slotCylinders)
         {
             obj.GetComponent<SlotCylinderScript>().currentResult = 0;
+            obj.GetComponent<SlotCylinderScript>().normalSpinDone = false;
+
+            
         }
 
         gameRunning = false;
