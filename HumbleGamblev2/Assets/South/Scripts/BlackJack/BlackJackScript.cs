@@ -32,6 +32,11 @@ public class BlackJackScript : MonoBehaviour
 
     GameInteraction currentClient;
 
+
+    [Header("Tips")]
+    public GameObject tip_PlaceCard_Crupier;
+    public GameObject tip_PlaceCard_Client;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,6 +124,8 @@ public class BlackJackScript : MonoBehaviour
 
     public void startGame(GameInteraction client, int bet)
     {
+        tip_PlaceCard_Client.SetActive(true);
+        tip_PlaceCard_Crupier.SetActive(false);
         betAmount = bet;
         gameStarted = true;
 
@@ -127,7 +134,9 @@ public class BlackJackScript : MonoBehaviour
 
     void Stand()
     {
-         clientTurn = false;
+        clientTurn = false;
+        tip_PlaceCard_Client.SetActive(false);
+        tip_PlaceCard_Crupier.SetActive(true);
     }
 
     public GameObject Pull()

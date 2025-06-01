@@ -44,7 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a833d5e663914214b868040158932815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayTime: 240
-  dayTotal: 4
+  endDayCanvas: {fileID: 0}
+  doorBell: {fileID: 0}
+  alarmWatch: {fileID: 0}
+  totalMoneyTMP: {fileID: 0}
+  dayTime: 5
+  dayTotal: 9999
   startingMinutesOffset: 17
+  greenMoneyColor: {r: 0.05273228, g: 0.745283, b: 0.22097903, a: 1}
+  redMoneyColor: {r: 0.745283, g: 0.22395827, b: 0.06679422, a: 1}
   daysCounter: 0
+  money: 100
