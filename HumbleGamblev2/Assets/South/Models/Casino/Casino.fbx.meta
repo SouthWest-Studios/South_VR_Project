@@ -8,52 +8,52 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: brick-35_diffuse
-    second: {fileID: 2800000, guid: 3bba9d14ef670114daa17c76bf98343c, type: 3}
+    second: {fileID: 2800000, guid: 8295a74c8aa54794e9484eaa7f204c15, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: brick-35_normal
-    second: {fileID: 2800000, guid: 2c2597da930e3d84ea3e2edc33c52f44, type: 3}
+    second: {fileID: 2800000, guid: a2a236e3f8f8e3b4d966f5e1270c021c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: brick-35_roughness
-    second: {fileID: 2800000, guid: 4cc3bf671598f164e93bd73756cd1a1d, type: 3}
+    second: {fileID: 2800000, guid: 9d7a7bcbaed3c29419f422628fc6fe15, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: fabric_74_color
-    second: {fileID: 2800000, guid: fa930b020acde2d4a8b419196f1e319a, type: 3}
+    second: {fileID: 2800000, guid: 4b1628aa80383a7489716752e3cc7917, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: fabric_74_roughness
-    second: {fileID: 2800000, guid: 0ff93cb8c2581a846b5f7568fc50851a, type: 3}
+    second: {fileID: 2800000, guid: 263ac9de17d1a4248a3d3af64f6a81af, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: stone_basecolor_diffuse
-    second: {fileID: 2800000, guid: d8a35be0a5c499c4d988015fc2612655, type: 3}
+    second: {fileID: 2800000, guid: 7cf1bfa411cc5124e98c57af7f8ded67, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: stone_metallic
-    second: {fileID: 2800000, guid: f6696f6465f788c459ee332c06bea66c, type: 3}
+    second: {fileID: 2800000, guid: 24c89677cf1ab984680e3b8543eb00a7, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: stone_normal_opengl
-    second: {fileID: 2800000, guid: bab61b4247b81d844947e5097239981a, type: 3}
+    second: {fileID: 2800000, guid: 23257e35a2119a14b80585eb235b7114, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: stone_specular
-    second: {fileID: 2800000, guid: 0b036ad905fa03649aedbe30f45a8066, type: 3}
+    second: {fileID: 2800000, guid: 2fe5a0f91c4d2da4b8fa75cba6944f3b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: stylized_wood_14_color
-    second: {fileID: 2800000, guid: 16f5168c517378a408918b551d661d45, type: 3}
+    second: {fileID: 2800000, guid: efd28ce94bf8ce54da2202cab23a64fa, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
