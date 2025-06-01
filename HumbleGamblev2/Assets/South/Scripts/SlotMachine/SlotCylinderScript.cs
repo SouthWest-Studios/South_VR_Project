@@ -41,7 +41,6 @@ public class SlotCylinderScript : MonoBehaviour
         {
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
-            print("aaaaaaaaaaaaaaaaaa");
             Vector3 eulerRotation = rb.rotation.eulerAngles;
 
             
@@ -57,7 +56,7 @@ public class SlotCylinderScript : MonoBehaviour
                 }
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+                    transform.localRotation = Quaternion.Euler(0f, 180f, 180f);
                 }
                 
             }
@@ -70,7 +69,7 @@ public class SlotCylinderScript : MonoBehaviour
                 }
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(180f, 0f, 180f);
+                    transform.localRotation = Quaternion.Euler(180f, 180f, 180f);
                 }
             }
             else if (currentResult == 3)
@@ -82,7 +81,7 @@ public class SlotCylinderScript : MonoBehaviour
                 }
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(90f, 0f, 180f);
+                    transform.localRotation = Quaternion.Euler(89f, 180f, 180f);
                 }
             }
             else if (currentResult == 4)
@@ -94,7 +93,7 @@ public class SlotCylinderScript : MonoBehaviour
                 }
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(270f, 0f, 180f);
+                    transform.localRotation = Quaternion.Euler(270f, 180f, 180f);
                 }
             }
 
