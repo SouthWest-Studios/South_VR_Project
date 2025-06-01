@@ -9,9 +9,9 @@ public class BlackJackScript : MonoBehaviour
 {
     public bool gameStarted = true;
     public int currentUserPoints = 0;
-    public TextMeshProUGUI userPointsText;
+    public TextMeshPro userPointsText;
     public int currentClientPoints = 0;
-    public TextMeshProUGUI clientPointsText;
+    public TextMeshPro clientPointsText;
     public BlackJackCardScript currentCardInHand;
     private List<BlackJackCardScript> clientCards;
     private List<BlackJackCardScript> userCards;
@@ -36,72 +36,78 @@ public class BlackJackScript : MonoBehaviour
     [Header("Tips")]
     public GameObject tip_PlaceCard_Crupier;
     public GameObject tip_PlaceCard_Client;
+    private int currentMoney;
 
     // Start is called before the first frame update
     void Start()
     {
+        clientPointsText.text = "";
+        tip_PlaceCard_Client.SetActive(false);
+        tip_PlaceCard_Crupier.SetActive(false);
+
+        currentMoney = DayManager.instance.money;
         clientCards = new List<BlackJackCardScript>();
         userCards = new List<BlackJackCardScript>();
 
         spadesTextures = new Texture2D[13]; // 13 texturas, de 0 a 12
-        spadesTextures[0] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_A");  // SP_A = Índice 0
-        spadesTextures[1] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_2");  // SP_2 = Índice 1
-        spadesTextures[2] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_3");  // SP_3 = Índice 2
-        spadesTextures[3] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_4");  // SP_4 = Índice 3
-        spadesTextures[4] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_5");  // SP_5 = Índice 4
-        spadesTextures[5] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_6");  // SP_6 = Índice 5
-        spadesTextures[6] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_7");  // SP_7 = Índice 6
-        spadesTextures[7] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_8");  // SP_8 = Índice 7
-        spadesTextures[8] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_9");  // SP_9 = Índice 8
-        spadesTextures[9] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_10"); // SP_10 = Índice 9
-        spadesTextures[10] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_J"); // SP_J = Índice 10
-        spadesTextures[11] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_Q"); // SP_Q = Índice 11
-        spadesTextures[12] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_K"); // SP_K = Índice 12
+        spadesTextures[0] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_A");  // SP_A = ï¿½ndice 0
+        spadesTextures[1] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_2");  // SP_2 = ï¿½ndice 1
+        spadesTextures[2] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_3");  // SP_3 = ï¿½ndice 2
+        spadesTextures[3] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_4");  // SP_4 = ï¿½ndice 3
+        spadesTextures[4] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_5");  // SP_5 = ï¿½ndice 4
+        spadesTextures[5] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_6");  // SP_6 = ï¿½ndice 5
+        spadesTextures[6] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_7");  // SP_7 = ï¿½ndice 6
+        spadesTextures[7] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_8");  // SP_8 = ï¿½ndice 7
+        spadesTextures[8] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_9");  // SP_9 = ï¿½ndice 8
+        spadesTextures[9] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_10"); // SP_10 = ï¿½ndice 9
+        spadesTextures[10] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_J"); // SP_J = ï¿½ndice 10
+        spadesTextures[11] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_Q"); // SP_Q = ï¿½ndice 11
+        spadesTextures[12] = Resources.Load<Texture2D>("Cards/Types/Spades/SP_K"); // SP_K = ï¿½ndice 12
 
         clubsTextures = new Texture2D[13]; // 13 texturas, de 0 a 12
-        clubsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_A");  // CL_A = Índice 0
-        clubsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_2");  // CL_2 = Índice 1
-        clubsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_3");  // CL_3 = Índice 2
-        clubsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_4");  // CL_4 = Índice 3
-        clubsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_5");  // CL_5 = Índice 4
-        clubsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_6");  // CL_6 = Índice 5
-        clubsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_7");  // CL_7 = Índice 6
-        clubsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_8");  // CL_8 = Índice 7
-        clubsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_9");  // CL_9 = Índice 8
-        clubsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_10"); // CL_10 = Índice 9
-        clubsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_J"); // CL_J = Índice 10
-        clubsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_Q"); // CL_Q = Índice 11
-        clubsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_K"); // CL_K = Índice 12
+        clubsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_A");  // CL_A = ï¿½ndice 0
+        clubsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_2");  // CL_2 = ï¿½ndice 1
+        clubsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_3");  // CL_3 = ï¿½ndice 2
+        clubsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_4");  // CL_4 = ï¿½ndice 3
+        clubsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_5");  // CL_5 = ï¿½ndice 4
+        clubsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_6");  // CL_6 = ï¿½ndice 5
+        clubsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_7");  // CL_7 = ï¿½ndice 6
+        clubsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_8");  // CL_8 = ï¿½ndice 7
+        clubsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_9");  // CL_9 = ï¿½ndice 8
+        clubsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_10"); // CL_10 = ï¿½ndice 9
+        clubsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_J"); // CL_J = ï¿½ndice 10
+        clubsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_Q"); // CL_Q = ï¿½ndice 11
+        clubsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Clubs/CL_K"); // CL_K = ï¿½ndice 12
 
         diamondsTextures = new Texture2D[13]; // 13 texturas, de 0 a 12
-        diamondsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_A");  // DI_A = Índice 0
-        diamondsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_2");  // DI_2 = Índice 1
-        diamondsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_3");  // DI_3 = Índice 2
-        diamondsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_4");  // DI_4 = Índice 3
-        diamondsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_5");  // DI_5 = Índice 4
-        diamondsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_6");  // DI_6 = Índice 5
-        diamondsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_7");  // DI_7 = Índice 6
-        diamondsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_8");  // DI_8 = Índice 7
-        diamondsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_9");  // DI_9 = Índice 8
-        diamondsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_10"); // DI_10 = Índice 9
-        diamondsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_J"); // DI_J = Índice 10
-        diamondsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_Q"); // DI_Q = Índice 11
-        diamondsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_K"); // DI_K = Índice 12
+        diamondsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_A");  // DI_A = ï¿½ndice 0
+        diamondsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_2");  // DI_2 = ï¿½ndice 1
+        diamondsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_3");  // DI_3 = ï¿½ndice 2
+        diamondsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_4");  // DI_4 = ï¿½ndice 3
+        diamondsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_5");  // DI_5 = ï¿½ndice 4
+        diamondsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_6");  // DI_6 = ï¿½ndice 5
+        diamondsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_7");  // DI_7 = ï¿½ndice 6
+        diamondsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_8");  // DI_8 = ï¿½ndice 7
+        diamondsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_9");  // DI_9 = ï¿½ndice 8
+        diamondsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_10"); // DI_10 = ï¿½ndice 9
+        diamondsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_J"); // DI_J = ï¿½ndice 10
+        diamondsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_Q"); // DI_Q = ï¿½ndice 11
+        diamondsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Diamonds/DI_K"); // DI_K = ï¿½ndice 12
 
         heartsTextures = new Texture2D[13]; // 13 texturas, de 0 a 12
-        heartsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_A");  // HE_A = Índice 0
-        heartsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_2");  // HE_2 = Índice 1
-        heartsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_3");  // HE_3 = Índice 2
-        heartsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_4");  // HE_4 = Índice 3
-        heartsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_5");  // HE_5 = Índice 4
-        heartsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_6");  // HE_6 = Índice 5
-        heartsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_7");  // HE_7 = Índice 6
-        heartsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_8");  // HE_8 = Índice 7
-        heartsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_9");  // HE_9 = Índice 8
-        heartsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_10"); // HE_10 = Índice 9
-        heartsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_J"); // HE_J = Índice 10
-        heartsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_Q"); // HE_Q = Índice 11
-        heartsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_K"); // HE_K = Índice 12
+        heartsTextures[0] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_A");  // HE_A = ï¿½ndice 0
+        heartsTextures[1] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_2");  // HE_2 = ï¿½ndice 1
+        heartsTextures[2] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_3");  // HE_3 = ï¿½ndice 2
+        heartsTextures[3] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_4");  // HE_4 = ï¿½ndice 3
+        heartsTextures[4] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_5");  // HE_5 = ï¿½ndice 4
+        heartsTextures[5] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_6");  // HE_6 = ï¿½ndice 5
+        heartsTextures[6] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_7");  // HE_7 = ï¿½ndice 6
+        heartsTextures[7] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_8");  // HE_8 = ï¿½ndice 7
+        heartsTextures[8] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_9");  // HE_9 = ï¿½ndice 8
+        heartsTextures[9] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_10"); // HE_10 = ï¿½ndice 9
+        heartsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_J"); // HE_J = ï¿½ndice 10
+        heartsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_Q"); // HE_Q = ï¿½ndice 11
+        heartsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_K"); // HE_K = ï¿½ndice 12
 
     }
 
@@ -120,6 +126,8 @@ public class BlackJackScript : MonoBehaviour
             Pull();
         }
 
+
+
     }
 
     public void startGame(GameInteraction client, int bet)
@@ -128,7 +136,6 @@ public class BlackJackScript : MonoBehaviour
         tip_PlaceCard_Crupier.SetActive(false);
         betAmount = bet;
         gameStarted = true;
-
         currentClient = client;
     }
 
@@ -243,11 +250,12 @@ public class BlackJackScript : MonoBehaviour
         if (dealerWinner)
         {
             print("Ha ganado la casa");
-            Instantiate(cash, this.transform.position + new Vector3(1, 1, 0), Quaternion.identity);
+            currentMoney = currentMoney + betAmount;
         }
         else
         {
             print("Ha ganado el cliente");
+            currentMoney = currentMoney - betAmount * 2;
         }
         currentClientPoints = 0;
         currentUserPoints = 0;
@@ -256,7 +264,7 @@ public class BlackJackScript : MonoBehaviour
         betAmount = 0;
         foreach (GameObject card in cardGameObjects)
         {
-            GameObject.Destroy(card); // o DestroyImmediate(card); si estás en el editor
+            GameObject.Destroy(card); // o DestroyImmediate(card); si estï¿½s en el editor
         }
 
         cardGameObjects.Clear();
