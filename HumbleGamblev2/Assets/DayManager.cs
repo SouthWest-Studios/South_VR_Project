@@ -20,10 +20,10 @@ public class DayManager : MonoBehaviour
 
     [Header("Settings")]
     [Description("En segundos")]
-    public float dayTime = 240;
+    public float dayTime = 360;
     public int dayTotal = 999;
 
-    public int startingMinutesOffset = 17;
+    public int startingMinutesOffset = 9;
     public Color greenMoneyColor = new Color(18, 255, 75);
     public Color redMoneyColor = new Color(255, 73, 18);
 
@@ -153,13 +153,22 @@ public class DayManager : MonoBehaviour
     {
         return Mathf.CeilToInt(timeCounter);
     }
+
     public string GetDayTimeString()
     {
-        int totalSeconds = GetDayTime();
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
+        float totalVirtualMinutes = timeCounter * 2f; // 2 minutos virtuales por segundo real
+        int totalMinutes = Mathf.FloorToInt(totalVirtualMinutes);
 
-        return string.Format("{0:00}:{1:00}", minutes + startingMinutesOffset, seconds);
+        int hour = 9 + (totalMinutes / 60);
+        int minute = totalMinutes % 60;
+
+        if (hour >= 21)
+        {
+            hour = 21;
+            minute = 0;
+        }
+
+        return string.Format("{0:00}:{1:00}", hour, minute);
     }
 
     public string GetDayString()
