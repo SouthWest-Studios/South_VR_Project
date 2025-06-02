@@ -13,15 +13,20 @@ public class buyMenu : MonoBehaviour
 
     public TextMeshProUGUI currentMoneyText;
 
+    bool firstTime = false;
+
     void Start()
     {
-        currentMoneyText.text = DayManager.instance.money.ToString();
+        slot1.SetActive(false);
+        slot2.SetActive(false);
+        slot3.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        currentMoneyText.text = DayManager.instance.money.ToString();
     }
 
     public void buyObjects(int num)
@@ -30,15 +35,28 @@ public class buyMenu : MonoBehaviour
         switch (num)
         {
             case 0:
-                slot1.SetActive(true);
+                if(DayManager.instance.money >= 200)
+                {
+                    slot1.SetActive(true);
+                }
                 break;
             case 1:
-                slot2.SetActive(true);
+                if (DayManager.instance.money >= 300)
+                {
+                    slot2.SetActive(true);
+                }
                 break;
             case 2:
-                slot3.SetActive(true);
+                if (DayManager.instance.money >= 400)
+                {
+                    slot3.SetActive(true);
+                }
                 break;
-            case 3: print("juego terminado");
+            case 3:
+                if (DayManager.instance.money >= 1000)
+                {
+                    slot3.SetActive(true);
+                }
                 break;
             default:
                 Debug.LogWarning("Número de slot inválido: " + num);

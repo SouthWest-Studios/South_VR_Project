@@ -38,14 +38,17 @@ public class BlackJackScript : MonoBehaviour
     public GameObject tip_PlaceCard_Client;
     private int currentMoney;
 
+    public Transform player;
+
     // Start is called before the first frame update
     void Start()
     {
         clientPointsText.text = "";
+        userPointsText.text = "";
         tip_PlaceCard_Client.SetActive(false);
         tip_PlaceCard_Crupier.SetActive(false);
 
-        currentMoney = DayManager.instance.money;
+        
         clientCards = new List<BlackJackCardScript>();
         userCards = new List<BlackJackCardScript>();
 
@@ -108,12 +111,13 @@ public class BlackJackScript : MonoBehaviour
         heartsTextures[10] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_J"); // HE_J = �ndice 10
         heartsTextures[11] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_Q"); // HE_Q = �ndice 11
         heartsTextures[12] = Resources.Load<Texture2D>("Cards/Types/Hearts/HE_K"); // HE_K = �ndice 12
-
+        currentMoney = DayManager.instance.money;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //float gripValue = gripAction.action.ReadValue<float>();
         //if(gripValue > 0)
         //{
@@ -148,10 +152,8 @@ public class BlackJackScript : MonoBehaviour
 
     public GameObject Pull()
     {
-       
 
         GameObject newCardGO = Instantiate(cardPrefab, spawnPosition.position, Quaternion.identity);
-        BlackJackCardScript cardScript = newCardGO.GetComponent<BlackJackCardScript>();
         newCardGO.GetComponent<BlackJackCardScript>().id = RandomValue(1, 13);
         if (newCardGO.GetComponent<BlackJackCardScript>().id < 11 )
         {
@@ -204,7 +206,6 @@ public class BlackJackScript : MonoBehaviour
             currentClientPoints = currentClientPoints - currentCard.value;
             clientPointsText.text = currentClientPoints.ToString();
             clientCards.Remove(currentCard);
-
         }
 
     }
@@ -250,12 +251,13 @@ public class BlackJackScript : MonoBehaviour
         if (dealerWinner)
         {
             print("Ha ganado la casa");
-            currentMoney = currentMoney + betAmount;
+            DayManager.instance.money += betAmount;
+            print(betAmount.ToString());
         }
         else
         {
             print("Ha ganado el cliente");
-            currentMoney = currentMoney - betAmount * 2;
+            DayManager.instance.money -= betAmount;
         }
         currentClientPoints = 0;
         currentUserPoints = 0;
@@ -270,8 +272,10 @@ public class BlackJackScript : MonoBehaviour
         cardGameObjects.Clear();
         clientTurn = true;
         gameStarted = false;
-        currentClient.EndGameInteraction();
+        //currentClient.EndGameInteraction();
         currentClient = null;
+        clientPointsText.text = currentClientPoints.ToString();
+        userPointsText.text = currentUserPoints.ToString();
     }
 
     int RandomValue(int min, int max)

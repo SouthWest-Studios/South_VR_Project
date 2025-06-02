@@ -13,7 +13,7 @@ public class SlotCylinderScript : MonoBehaviour
     }
     public int currentResult = 0;
     Rigidbody rb;
-    SlotMachineScript slotMachineScript;
+    public SlotMachineScript slotMachineScript;
 
     public SlotSymbol currentSymbol;
 
@@ -24,7 +24,6 @@ public class SlotCylinderScript : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        slotMachineScript = FindAnyObjectByType<SlotMachineScript>();
     }
     void Update()
     {
@@ -43,15 +42,12 @@ public class SlotCylinderScript : MonoBehaviour
             currentResult = result;
             Vector3 eulerRotation = rb.rotation.eulerAngles;
 
-            
-
-
 
             if (currentResult == 2)
             {
                 if (grabing == true)
                 {
-                    transform.localRotation = Quaternion.Euler(0f, 90f, 180f);
+                    transform.localRotation = Quaternion.Euler(0f, 180, 180f);
 
                 }
                 else
@@ -64,7 +60,7 @@ public class SlotCylinderScript : MonoBehaviour
             {
                 if (grabing == true)
                 {
-                    transform.localRotation = Quaternion.Euler(180f, 90f, 180f);
+                    transform.localRotation = Quaternion.Euler(180f, 180, 180f);
 
                 }
                 else
@@ -76,7 +72,7 @@ public class SlotCylinderScript : MonoBehaviour
             {
                 if (grabing == true)
                 {
-                    transform.localRotation = Quaternion.Euler(90f, 90f, 180f);
+                    transform.localRotation = Quaternion.Euler(90f, 180, 180f);
 
                 }
                 else
@@ -88,7 +84,7 @@ public class SlotCylinderScript : MonoBehaviour
             {
                 if (grabing == true)
                 {
-                    transform.localRotation = Quaternion.Euler(270f, 90f, 180f);
+                    transform.localRotation = Quaternion.Euler(270f, 180, 180f);
 
                 }
                 else

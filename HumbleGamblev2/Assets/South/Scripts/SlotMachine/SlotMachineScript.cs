@@ -17,7 +17,7 @@ public class SlotMachineScript : MonoBehaviour
 
     public GameObject cash;
     
-
+    private int betAmount = 0;
     void Start()
     {
         SlotCylinderScript[] allSlotScripts = GetComponentsInChildren<SlotCylinderScript>();
@@ -45,7 +45,7 @@ public class SlotMachineScript : MonoBehaviour
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
 
-            StartGame();
+            StartGame(1);
         }
 
         bool allResultsSet = true;
@@ -70,7 +70,7 @@ public class SlotMachineScript : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(int bet)
     {
         int i = 1;
         foreach (GameObject obj in slotCylinders)
@@ -78,7 +78,7 @@ public class SlotMachineScript : MonoBehaviour
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                obj.GetComponent<SlotCylinderScript>().normalSpinDone = false;
+                //obj.GetComponent<SlotCylinderScript>().normalSpinDone = false;
                 rb.AddTorque(-torqueForce, ForceMode.Impulse);
                 float drag = Random.Range(0.05f, 0.07f);
                 rb.angularDrag = drag / i;
@@ -87,6 +87,8 @@ public class SlotMachineScript : MonoBehaviour
 
         }
         gameRunning = true;
+
+        betAmount = bet;
     }
 
     public void EndGame()
@@ -121,6 +123,7 @@ public class SlotMachineScript : MonoBehaviour
         {
             Debug.Log("¡Jackpot! Tres sietes!");
             hasWon = true;
+            DayManager.instance.money += betAmount * 5;
             //Instantiate(cash, this.transform.position + new Vector3(5, 0, 5), Quaternion.identity);
         }
         else
@@ -129,9 +132,11 @@ public class SlotMachineScript : MonoBehaviour
             {
                 if ((pair.Key == 1 || pair.Key == 2 || pair.Key == 4) && pair.Value == 3)
                 {
+
                     Debug.Log(" ¡Premio por 3 frutas iguales!");
                     //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                     hasWon = true;
+                    DayManager.instance.money += betAmount * 3;
                     break;
                 }
             }
@@ -166,6 +171,7 @@ public class SlotMachineScript : MonoBehaviour
             if (fruitResults.Count == 3)
             {
                 Debug.Log("¡Victoria por 3 frutas diferentes!");
+                DayManager.instance.money += betAmount * 2;
                 //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                 hasWon = true;
             }
