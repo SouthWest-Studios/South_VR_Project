@@ -26,7 +26,7 @@ public class buyMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentMoneyText.text = DayManager.instance.money.ToString();
+        currentMoneyText.text = DayManager.instance.money.ToString() + "$";
     }
 
     public void buyObjects(int num)
