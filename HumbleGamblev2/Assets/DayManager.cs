@@ -10,6 +10,7 @@ public class DayManager : MonoBehaviour
 
     [Header("References")]
     public GameObject endDayCanvas;
+    public GameObject shopMenuCanvas;
     public AudioSource doorBell;
     public AudioSource alarmWatch;
 
@@ -68,6 +69,7 @@ public class DayManager : MonoBehaviour
     void Start()
     {
         endDayCanvas.SetActive(false);
+        shopMenuCanvas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -90,6 +92,7 @@ public class DayManager : MonoBehaviour
                 {
                     //Recargar
                     endDayCanvas.SetActive(true);
+                    shopMenuCanvas.SetActive(false);
                     if (money > 0)
                     {
                         totalMoneyTMP.color = greenMoneyColor;
@@ -160,6 +163,7 @@ public class DayManager : MonoBehaviour
         needChangeDay = false;
         timeCounter = 0;
         endDayCanvas.SetActive(false);
+        shopMenuCanvas.SetActive(true);
         if (doorBell)
         {
             doorBell.Play();
