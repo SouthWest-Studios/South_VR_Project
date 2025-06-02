@@ -8,7 +8,6 @@ public class Smartwatch : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI dayText;
-    [SerializeField] Image timerImage;
     // Start is called before the first frame update
 
     private DayManager dm;
@@ -23,6 +22,5 @@ public class Smartwatch : MonoBehaviour
     {
         timeText.text = dm.GetDayTimeString();
         dayText.text = dm.GetDayString();
-        timerImage.fillAmount = dm.GetNormalizedDayTime();
     }
 }
