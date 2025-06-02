@@ -177,10 +177,9 @@ public class DayManager : MonoBehaviour
         timeCounter = 0;
         endDayCanvas.SetActive(false);
         shopMenuCanvas.SetActive(true);
-        if (doorBell)
-        {
-            doorBell.Play();
-        }
+        
+        doorBell.Play();
+        
         
     }
 
