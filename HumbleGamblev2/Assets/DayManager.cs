@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
@@ -105,6 +106,22 @@ public class DayManager : MonoBehaviour
                 }
             } 
         }
+    
+        if (money <= -50)
+        {
+            if (!FadeToBlackController.instance.fading && !FadeToBlackController.instance.fadeToBlackDoned)
+            {
+                FadeToBlackController.instance.DoFade();
+            }
+        }
+        if (FadeToBlackController.instance.fadeToBlackDoned)
+        {
+            //Cambiar a derrota
+            SceneManager.LoadScene("DefeatScene");
+        }
+        
+    
+    
     }
 
     public float GetNormalizedDayTime()
