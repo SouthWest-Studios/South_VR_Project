@@ -129,6 +129,15 @@ public class DayManager : MonoBehaviour
                 SceneManager.LoadScene("DefeatScene");
             }
         }
+
+        if(SceneManager.GetActiveScene().name == "DefeatScene")
+        {
+            instance = null;
+            Destroy(gameObject);
+
+        }
+
+
     }
 
     public float GetNormalizedDayTime()
