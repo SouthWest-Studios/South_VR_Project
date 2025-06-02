@@ -24,6 +24,9 @@ public class BarajaController : MonoBehaviour
     private bool prevRightPressed = false;
 
     BlackJackScript blackJackScript;
+
+    public AudioSource drawCardSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +79,7 @@ public class BarajaController : MonoBehaviour
 
     void GrabCard(XRBaseInteractor interactor)
     {
+        drawCardSound.Play();
         SelectEnterEventArgs events = new SelectEnterEventArgs();
         events.interactorObject = interactor;
 

@@ -2258,6 +2258,7 @@ MonoBehaviour:
   leftInteractor: {fileID: 852041118}
   rightInteractor: {fileID: 1868670213}
   card: {fileID: 5977182208960733748, guid: 5d50eec00fe2b0e44ab859cce20525c8, type: 3}
+  drawCardSound: {fileID: 0}
 --- !u!114 &651738679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7177,6 +7178,79 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &2009372103
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9492455
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.3355634
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7043708
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7043709
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.06214304
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.06214305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612753630512429106, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389395470978540168, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: m_Name
+      value: Baraja 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161911696147530113, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 725424443}
+    - target: {fileID: 4161911696147530113, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: leftInteractor
+      value: 
+      objectReference: {fileID: 852041118}
+    - target: {fileID: 4161911696147530113, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: rightController
+      value: 
+      objectReference: {fileID: 718910070}
+    - target: {fileID: 4161911696147530113, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
+      propertyPath: rightInteractor
+      value: 
+      objectReference: {fileID: 1868670213}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3109f34f1de22343b518874a7cccdc6, type: 3}
 --- !u!114 &2038596500 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1974345111242377380, guid: a7f0aa1ec6b5ca14e9ecfccbb2b1ae97, type: 3}
@@ -8654,3 +8728,4 @@ SceneRoots:
   - {fileID: 5702841718452292094}
   - {fileID: 1332578804}
   - {fileID: 2057759797}
+  - {fileID: 2009372103}
