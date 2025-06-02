@@ -17,4 +17,6 @@ public class BoneReferenceHolder : MonoBehaviour
     public Transform rightElbow;
     public Transform spine;
     public Transform head;
+    public Transform rightHand;
+    public Transform leftHand;
 }

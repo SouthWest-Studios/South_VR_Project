@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.AI;  // 引入 NavMesh
+using UnityEngine.AI;
 
 public class ActiveRagdollWalker : MonoBehaviour
 {
@@ -9,161 +8,113 @@ public class ActiveRagdollWalker : MonoBehaviour
     public ConfigurableJoint spineJoint;
     public ConfigurableJoint leftLegJoint;
     public ConfigurableJoint rightLegJoint;
-
     public Rigidbody leftFootRb;
     public Rigidbody rightFootRb;
-
-    public Camera playerCamera;
     public Transform leftFoot;
     public Transform rightFoot;
 
     [Header("Movement Settings")]
     public float moveForce = 500f;
     public float maxSpeed = 4f;
-    public float sprintMultiplier = 1.5f;
     public float rotationSpeed = 10f;
     public float groundCheckDistance = 0.2f;
 
     [Header("Leg Settings")]
-    public float stepHeight = 6f;            // 脚步抬起力度
-    public float stepSpeed = 4f;             // 步态速度
-    public float legSwingAngle = 30f;        // 腿前后摆角度
-    public float footGroundForce = 150f;     // 落地反作用力
+    public float stepHeight = 6f;
+    public float stepSpeed = 4f;
+    public float legSwingAngle = 30f;
+    public float footGroundForce = 150f;
 
     [Header("Pathfinding Settings")]
-    [Tooltip("第一个目标位置的Transform")]
-    public Transform target;               // 第一个目标位置
-    [Tooltip("第二个目标位置的Transform")]
-    public Transform destination2;         // 新增的第二个目标位置
-    [Tooltip("是否启用自动寻路")]
-    public bool usePathfinding = true;     // 开关：true时自动沿路径移动，false则依赖手动输入
-    [Tooltip("路径重算时间间隔（秒）")]
+    public Transform target;
+    public Transform destination2;
+    public bool usePathfinding = true;
     public float pathRecalcInterval = 0.5f;
-    [Tooltip("到达航点的距离阈值")]
     public float waypointThreshold = 0.5f;
-    [Tooltip("到达最终目标的距离阈值")]
     public float destinationThreshold = 1f;
-
-
 
     private NavMeshPath navPath;
     private int currentCornerIndex = 1;
     private float pathRecalcTimer = 0f;
-    private bool hasReachedFirstTarget;    // 标记是否已到达第一个目标
-    private Transform currentTarget;        // 当前使用的目标
-
-    private PlayerInputActions inputActions;
-    private Vector2 moveInput;
-    private bool isSprinting;
+    private bool hasReachedFirstTarget;
+    private Transform currentTarget;
     private float gaitCycle;
+    private Vector3 moveDirection;
 
     void Awake()
     {
-        // 初始化输入系统
-        inputActions = new PlayerInputActions();
-        inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        inputActions.Player.Move.canceled += _ => moveInput = Vector2.zero;
-        inputActions.Player.Sprint.performed += _ => isSprinting = true;
-        inputActions.Player.Sprint.canceled += _ => isSprinting = false;
-
-        // 初始化路径
         navPath = new NavMeshPath();
         pathRecalcTimer = pathRecalcInterval;
-
-        // 设置初始目标
         currentTarget = target;
         hasReachedFirstTarget = false;
     }
 
-    void OnEnable() => inputActions.Enable();
-    void OnDisable() => inputActions.Disable();
-
     void FixedUpdate()
     {
-            // 如果启用了寻路且目标存在，则通过NavMesh计算路径并生成移动方向
         if (usePathfinding && currentTarget != null)
         {
-            
             UpdatePath();
 
-            // 当路径有效时，依次沿航点前进
             if (navPath != null && navPath.corners.Length > 0)
             {
                 Vector3 targetPos = navPath.corners[currentCornerIndex];
                 Vector3 diff = targetPos - hips.position;
-                diff.y = 0f; // 忽略高度差，保持水平方向移动
+                diff.y = 0f;
                 float distance = diff.magnitude;
 
-                // 如果接近当前航点，则切换到下一个航点（如果存在）
                 if (distance < waypointThreshold && currentCornerIndex < navPath.corners.Length - 1)
                 {
                     currentCornerIndex++;
-                    targetPos = navPath.corners[currentCornerIndex]; // 更新目标位置
+                    targetPos = navPath.corners[currentCornerIndex];
                     diff = targetPos - hips.position;
                     diff.y = 0f;
                     distance = diff.magnitude;
                 }
 
-                // 检查是否到达最终目标
                 Vector3 finalDestination = navPath.corners[navPath.corners.Length - 1];
                 float finalDistance = Vector3.Distance(
                     new Vector3(hips.position.x, 0, hips.position.z),
                     new Vector3(finalDestination.x, 0, finalDestination.z)
                 );
 
-                // 到达目标时切换目的地
                 if (finalDistance < destinationThreshold)
                 {
                     if (!hasReachedFirstTarget)
                     {
-                        // 到达第一个目标，切换到第二个目标
                         hasReachedFirstTarget = true;
                         currentTarget = destination2;
-                        pathRecalcTimer = 0; // 立即重新计算路径
-                        currentCornerIndex = 1; // 重置航点索引
+                        pathRecalcTimer = 0;
+                        currentCornerIndex = 1;
                     }
                     else
                     {
-                        // 已到达第二个目标，停止寻路并销毁自身
                         usePathfinding = false;
-                        Destroy(gameObject); // 删除游戏对象
-                        return; // 立即返回，不再执行后续代码
+                        Destroy(gameObject);
+                        return;
                     }
                 }
                 else
                 {
-                    // 计算从当前刚体位置到该航点的方向
-                    Vector3 pathDirection = diff.normalized;
-
-                    // 将世界方向转换为相对于摄像头的输入（与已有的移动计算逻辑保持一致）
-                    float xInput = Vector3.Dot(pathDirection, playerCamera.transform.right);
-                    float yInput = Vector3.Dot(pathDirection, playerCamera.transform.forward);
-                    moveInput = new Vector2(xInput, yInput);
+                    moveDirection = diff.normalized;
                 }
             }
         }
-        // 若未启用自动寻路，则依靠手动输入，moveInput由输入系统更新
 
         HandleMovement();
         HandleGaitCycle();
         ApplyFootForces();
     }
 
-    /// <summary>
-    /// 根据当前刚体位置与目标位置计算导航路径，每隔一定时间重算一次
-    /// </summary>
     private void UpdatePath()
     {
-
         pathRecalcTimer -= Time.fixedDeltaTime;
         if (pathRecalcTimer <= 0f && currentTarget != null)
         {
             NavMeshPath newPath = new NavMeshPath();
-            // 计算从 hips 的当前位置到 currentTarget 的路径
             if (NavMesh.CalculatePath(hips.position, currentTarget.position, NavMesh.AllAreas, newPath))
             {
                 navPath = newPath;
-                currentCornerIndex = 1; // 重置为第一个航点（corners[0]通常为起点）
+                currentCornerIndex = 1;
             }
             pathRecalcTimer = pathRecalcInterval;
         }
@@ -171,20 +122,10 @@ public class ActiveRagdollWalker : MonoBehaviour
 
     private void HandleMovement()
     {
-        // 若输入为空则不移动
-        if (moveInput.sqrMagnitude < 0.01f) return;
+        if (moveDirection.sqrMagnitude < 0.01f) return;
 
-        // 以摄像头正方向（忽略Y轴）获得基本移动方向
-        Vector3 camForward = playerCamera.transform.forward;
-        camForward.y = 0;
-        camForward.Normalize();
+        hips.AddForce(moveDirection * moveForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-        Vector3 moveDir = (camForward * moveInput.y + playerCamera.transform.right * moveInput.x).normalized;
-        float speed = isSprinting ? moveForce * sprintMultiplier : moveForce;
-
-        hips.AddForce(moveDir * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-
-        // 限制水平方向速度
         Vector3 horizontalVel = new Vector3(hips.velocity.x, 0, hips.velocity.z);
         if (horizontalVel.magnitude > maxSpeed)
         {
@@ -192,22 +133,20 @@ public class ActiveRagdollWalker : MonoBehaviour
             hips.velocity = new Vector3(horizontalVel.x, hips.velocity.y, horizontalVel.z);
         }
 
-        // 使刚体朝向运动方向旋转
-        if (moveDir != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
-            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            Quaternion targetRot = Quaternion.LookRotation(moveDirection);
             hips.MoveRotation(Quaternion.Slerp(hips.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
     }
 
     private void HandleGaitCycle()
     {
-        if (moveInput.sqrMagnitude < 0.01f) return;
+        if (moveDirection.sqrMagnitude < 0.01f) return;
 
-        gaitCycle += Time.fixedDeltaTime * stepSpeed * (isSprinting ? 1.5f : 1f);
+        gaitCycle += Time.fixedDeltaTime * stepSpeed;
         gaitCycle %= Mathf.PI * 2;
 
-        // 通过正弦值确定左右腿的动画相位
         float leftLegPhase = Mathf.Sin(gaitCycle);
         float rightLegPhase = Mathf.Sin(gaitCycle + Mathf.PI);
 
@@ -217,7 +156,6 @@ public class ActiveRagdollWalker : MonoBehaviour
         leftLegJoint.targetRotation = Quaternion.Euler(leftSwing);
         rightLegJoint.targetRotation = Quaternion.Euler(rightSwing);
 
-        // 抬脚时给予脚部向上和向前推的力
         if (leftLegPhase > 0f && leftFootRb != null)
         {
             Vector3 lift = Vector3.up * stepHeight + hips.transform.forward * 1.5f;
@@ -233,7 +171,6 @@ public class ActiveRagdollWalker : MonoBehaviour
 
     private void ApplyFootForces()
     {
-        // 检查左右脚是否接触地面
         bool leftGrounded = Physics.Raycast(leftFoot.position, Vector3.down, groundCheckDistance);
         bool rightGrounded = Physics.Raycast(rightFoot.position, Vector3.down, groundCheckDistance);
 
@@ -250,7 +187,10 @@ public class ActiveRagdollWalker : MonoBehaviour
         }
     }
 
-    public void setCurrenTarget(Transform target) { 
-    this.currentTarget = target;
+    public void SetCurrentTarget(Transform newTarget)
+    {
+        currentTarget = newTarget;
+        pathRecalcTimer = 0;
+        currentCornerIndex = 1;
     }
 }
