@@ -40,6 +40,7 @@ public class SlotCylinderScript : MonoBehaviour
         if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
         {
             spiningSlotAudio.loop = false;
+            spiningSlotAudio.Stop();
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
             Vector3 eulerRotation = rb.rotation.eulerAngles;

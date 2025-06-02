@@ -18,6 +18,7 @@ public class SlotMachineScript : MonoBehaviour
     public GameObject cash;
 
     public AudioSource leverPush;
+    public AudioSource winPriezeSound;
 
     private int betAmount = 0;
     void Start()
@@ -126,6 +127,7 @@ public class SlotMachineScript : MonoBehaviour
         // Comprobar si hay tres sietes
         if (resultCounts.ContainsKey(3) && resultCounts[3] == 3)
         {
+            winPriezeSound.Play();
             Debug.Log("¡Jackpot! Tres sietes!");
             hasWon = true;
             DayManager.instance.money += betAmount * 5;
@@ -137,7 +139,7 @@ public class SlotMachineScript : MonoBehaviour
             {
                 if ((pair.Key == 1 || pair.Key == 2 || pair.Key == 4) && pair.Value == 3)
                 {
-
+                    winPriezeSound.Play();
                     Debug.Log(" ¡Premio por 3 frutas iguales!");
                     //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                     hasWon = true;
@@ -175,6 +177,7 @@ public class SlotMachineScript : MonoBehaviour
 
             if (fruitResults.Count == 3)
             {
+                winPriezeSound.Play();
                 Debug.Log("¡Victoria por 3 frutas diferentes!");
                 DayManager.instance.money += betAmount * 2;
                 //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
