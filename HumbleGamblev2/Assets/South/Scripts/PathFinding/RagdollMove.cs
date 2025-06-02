@@ -44,6 +44,8 @@ public class ActiveRagdollWalker : MonoBehaviour
     [Tooltip("到达最终目标的距离阈值")]
     public float destinationThreshold = 1f;
 
+
+
     private NavMeshPath navPath;
     private int currentCornerIndex = 1;
     private float pathRecalcTimer = 0f;
@@ -78,9 +80,10 @@ public class ActiveRagdollWalker : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 如果启用了寻路且目标存在，则通过NavMesh计算路径并生成移动方向
+            // 如果启用了寻路且目标存在，则通过NavMesh计算路径并生成移动方向
         if (usePathfinding && currentTarget != null)
         {
+            
             UpdatePath();
 
             // 当路径有效时，依次沿航点前进
@@ -151,6 +154,7 @@ public class ActiveRagdollWalker : MonoBehaviour
     /// </summary>
     private void UpdatePath()
     {
+
         pathRecalcTimer -= Time.fixedDeltaTime;
         if (pathRecalcTimer <= 0f && currentTarget != null)
         {
@@ -244,5 +248,9 @@ public class ActiveRagdollWalker : MonoBehaviour
             Vector3 forceDir = (hips.transform.forward + Vector3.up * 0.3f).normalized;
             hips.AddForce(forceDir * footGroundForce * Time.fixedDeltaTime, ForceMode.Impulse);
         }
+    }
+
+    public void setCurrenTarget(Transform target) { 
+    this.currentTarget = target;
     }
 }
