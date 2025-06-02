@@ -11,6 +11,7 @@ public class DayManager : MonoBehaviour
     [Header("References")]
     public GameObject endDayCanvas;
     public GameObject shopMenuCanvas;
+    public GameObject tipNextDay;
     public AudioSource doorBell;
     public AudioSource alarmWatch;
 
@@ -70,6 +71,8 @@ public class DayManager : MonoBehaviour
     {
         endDayCanvas.SetActive(false);
         shopMenuCanvas.SetActive(true);
+
+        tipNextDay.SetActive(false);
     }
 
     // Update is called once per frame
@@ -79,9 +82,11 @@ public class DayManager : MonoBehaviour
         if (timeCounter >= dayTime)
         {
             //Fin del dia
+            
             if (!needChangeDay) {
                 needChangeDay = true;
                 if (alarmWatch) alarmWatch.Play();
+                tipNextDay.SetActive(true);
 
                 if (daysCounter >= dayTotal)
                 {
@@ -177,7 +182,8 @@ public class DayManager : MonoBehaviour
         timeCounter = 0;
         endDayCanvas.SetActive(false);
         shopMenuCanvas.SetActive(true);
-        
+        tipNextDay.SetActive(false);
+
         doorBell.Play();
         
         
