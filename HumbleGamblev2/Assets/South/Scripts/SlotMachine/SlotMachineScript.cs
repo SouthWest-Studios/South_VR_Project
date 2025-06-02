@@ -16,7 +16,9 @@ public class SlotMachineScript : MonoBehaviour
     public Vector3 torqueForce;
 
     public GameObject cash;
-    
+
+    public AudioSource leverPush;
+
     private int betAmount = 0;
     void Start()
     {
@@ -72,7 +74,9 @@ public class SlotMachineScript : MonoBehaviour
 
     public void StartGame(int bet)
     {
+        leverPush.Play();
         int i = 1;
+
         foreach (GameObject obj in slotCylinders)
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();

@@ -4212,6 +4212,7 @@ MonoBehaviour:
   gameRunning: 0
   torqueForce: {x: 100000000, y: 0, z: 0}
   cash: {fileID: 0}
+  leverPush: {fileID: 1580321167710825413}
 --- !u!1001 &3245051846419103255
 PrefabInstance:
   m_ObjectHideFlags: 0
