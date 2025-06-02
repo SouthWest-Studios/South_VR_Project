@@ -8,8 +8,8 @@ public class GameInteraction : MonoBehaviour
 
     Rigidbody rb;
     int moneyToBet;
-    int minMoneyToBet = 20;
-    int maxMoneyToBet = 100;
+    int minMoneyToBet = 15;
+    int maxMoneyToBet = 25;
 
     NPCMove nPCMoveScript;
 
@@ -30,11 +30,12 @@ public class GameInteraction : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("BlackJackTable"))
+        if (other.CompareTag("BlackJackTable"))
         {
             BlackJackScript script = other.gameObject.GetComponent<BlackJackScript>();
-            if(!script.gameStarted && currentGame != "BlackJackTable")
+            if(script.gameStarted == false && currentGame != "BlackJackTable")
             {
+                print("bbbbbbbbbbb");
                 moneyToBet = UnityEngine.Random.Range(minMoneyToBet, maxMoneyToBet + 1);
                 script.startGame(this.GetComponent<GameInteraction>(), moneyToBet);
                 currentGame = other.tag;

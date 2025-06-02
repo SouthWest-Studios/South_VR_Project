@@ -174,6 +174,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackJackTable
       objectReference: {fileID: 0}
+    - target: {fileID: 1846852697915845109, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_TagString
+      value: BlackJackTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825114502927567074, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: gameStarted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7825114502927567074, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
       propertyPath: spawnPosition
       value: 
@@ -186,6 +194,30 @@ PrefabInstance:
       propertyPath: clientPointsText
       value: 
       objectReference: {fileID: 1882389342}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Size.x
+      value: 3.177217
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7652783
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Size.z
+      value: 3.5083814
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Center.x
+      value: -0.014430479
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Center.y
+      value: 0.38263905
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342020471005976211, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
+      propertyPath: m_Center.z
+      value: 1.2541925
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6996014494253082644, guid: 585dcff4cc297744593692906bcd6d10, type: 3}
