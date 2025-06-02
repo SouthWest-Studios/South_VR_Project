@@ -44,7 +44,7 @@ public class DayManager : MonoBehaviour
 
 
 
-
+    private bool hasWin = false;
 
     private float timeCounter = 0;
 
@@ -110,7 +110,7 @@ public class DayManager : MonoBehaviour
             } 
         }
     
-        if (money <= -50)
+        if (money <= -50 && !hasWin)
         {
             if (!FadeToBlackController.instance.fading && !FadeToBlackController.instance.fadeToBlackDoned)
             {
@@ -120,11 +120,15 @@ public class DayManager : MonoBehaviour
         if (FadeToBlackController.instance.fadeToBlackDoned)
         {
             //Cambiar a derrota
-            SceneManager.LoadScene("DefeatScene");
+            if (hasWin)
+            {
+                SceneManager.LoadScene("VictoryScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("DefeatScene");
+            }
         }
-        
-    
-    
     }
 
     public float GetNormalizedDayTime()
@@ -169,5 +173,14 @@ public class DayManager : MonoBehaviour
             doorBell.Play();
         }
         
+    }
+
+    public void BuyFinalCasino()
+    {
+        if (!FadeToBlackController.instance.fading && !FadeToBlackController.instance.fadeToBlackDoned)
+        {
+            FadeToBlackController.instance.DoFade();
+        }
+        hasWin = true;
     }
 }
