@@ -13,7 +13,7 @@ public class DayManager : MonoBehaviour
     public AudioSource doorBell;
     public AudioSource alarmWatch;
 
-    public Text totalMoneyTMP;
+    public TextMeshProUGUI totalMoneyTMP;
     //public Light directionalLight;
 
     [Header("Settings")]
