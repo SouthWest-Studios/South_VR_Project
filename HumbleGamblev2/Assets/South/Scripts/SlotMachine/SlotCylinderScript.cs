@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlotCylinderScript : MonoBehaviour
 {
+    public AudioSource spiningSlotAudio;
     public enum SlotSymbol
     {
         Symbol0,
@@ -38,6 +39,7 @@ public class SlotCylinderScript : MonoBehaviour
     {
         if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
         {
+            spiningSlotAudio.loop = false;
             rb.angularVelocity = Vector3.zero;
             currentResult = result;
             Vector3 eulerRotation = rb.rotation.eulerAngles;

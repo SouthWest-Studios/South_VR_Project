@@ -78,7 +78,8 @@ public class SlotMachineScript : MonoBehaviour
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                //obj.GetComponent<SlotCylinderScript>().normalSpinDone = false;
+                obj.GetComponent<SlotCylinderScript>().spiningSlotAudio.loop = true;
+                obj.GetComponent<SlotCylinderScript>().spiningSlotAudio.Play();
                 rb.AddTorque(-torqueForce, ForceMode.Impulse);
                 float drag = Random.Range(0.05f, 0.07f);
                 rb.angularDrag = drag / i;

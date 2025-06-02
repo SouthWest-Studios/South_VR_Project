@@ -44,8 +44,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6507a273b9231f842a94e17cce7a5279, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.361
+  m_Pitch: 0.7
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1927,8 +1927,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6507a273b9231f842a94e17cce7a5279, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.361
+  m_Pitch: 0.7
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -2518,8 +2518,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6507a273b9231f842a94e17cce7a5279, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.361
+  m_Pitch: 0.7
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -3722,8 +3722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7216dce99a42c488f506277ebf2f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spiningSlotAudio: {fileID: 8454668254941547600}
   currentResult: 0
-  slotMachineScript: {fileID: 0}
+  slotMachineScript: {fileID: 5899825825186276297}
   currentSymbol: 0
   normalSpinDone: 0
 --- !u!1001 &950523347577799109
@@ -4040,8 +4041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7216dce99a42c488f506277ebf2f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spiningSlotAudio: {fileID: 7910686247072248427}
   currentResult: 0
-  slotMachineScript: {fileID: 0}
+  slotMachineScript: {fileID: 5899825825186276297}
   currentSymbol: 0
   normalSpinDone: 0
 --- !u!4 &773025461141399086 stripped
@@ -4524,8 +4526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7216dce99a42c488f506277ebf2f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spiningSlotAudio: {fileID: 3503747430548648340}
   currentResult: 0
-  slotMachineScript: {fileID: 0}
+  slotMachineScript: {fileID: 5899825825186276297}
   currentSymbol: 0
   normalSpinDone: 0
 --- !u!4 &3063015143621548540 stripped
