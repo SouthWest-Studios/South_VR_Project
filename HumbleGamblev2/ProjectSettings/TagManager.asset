@@ -7,6 +7,7 @@ TagManager:
   - Card
   - Anchor
   - Result
+  - BlackJackTable
   layers:
   - Default
   - TransparentFX

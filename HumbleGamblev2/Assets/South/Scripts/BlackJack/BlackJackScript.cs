@@ -7,7 +7,7 @@ using static BlackJackCardScript;
 
 public class BlackJackScript : MonoBehaviour
 {
-    public bool gameStarted = true;
+    public bool gameStarted = false;
     public int currentUserPoints = 0;
     public TextMeshPro userPointsText;
     public int currentClientPoints = 0;
@@ -272,7 +272,7 @@ public class BlackJackScript : MonoBehaviour
         cardGameObjects.Clear();
         clientTurn = true;
         gameStarted = false;
-        //currentClient.EndGameInteraction();
+        currentClient.EndGameInteraction();
         currentClient = null;
         clientPointsText.text = currentClientPoints.ToString();
         userPointsText.text = currentUserPoints.ToString();
