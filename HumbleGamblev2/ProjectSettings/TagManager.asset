@@ -8,6 +8,7 @@ TagManager:
   - Anchor
   - Result
   - BlackJackTable
+  - Slot
   layers:
   - Default
   - TransparentFX

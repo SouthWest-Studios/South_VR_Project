@@ -17,9 +17,9 @@ public class buyMenu : MonoBehaviour
 
     void Start()
     {
-        slot1.SetActive(false);
-        slot2.SetActive(false);
-        slot3.SetActive(false);
+        //slot1.SetActive(false);
+        //slot2.SetActive(false);
+        //slot3.SetActive(false);
         
     }
 

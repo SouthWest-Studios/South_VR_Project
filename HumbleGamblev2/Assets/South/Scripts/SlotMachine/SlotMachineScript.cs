@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class SlotMachineScript : MonoBehaviour
     public AudioSource winPriezeSound;
 
     private int betAmount = 0;
+
+    GameInteraction currentClient;
     void Start()
     {
         SlotCylinderScript[] allSlotScripts = GetComponentsInChildren<SlotCylinderScript>();
@@ -45,10 +48,11 @@ public class SlotMachineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
 
-            StartGame(1);
+            StartGame(currentClient, 1);
         }
 
         bool allResultsSet = true;
@@ -73,7 +77,7 @@ public class SlotMachineScript : MonoBehaviour
         }
     }
 
-    public void StartGame(int bet)
+    public void StartGame(GameInteraction client, int bet)
     {
         leverPush.Play();
         int i = 1;
@@ -93,8 +97,9 @@ public class SlotMachineScript : MonoBehaviour
 
         }
         gameRunning = true;
-
         betAmount = bet;
+
+        currentClient = client;
     }
 
     public void EndGame()
@@ -201,6 +206,7 @@ public class SlotMachineScript : MonoBehaviour
         }
 
         gameRunning = false;
+        currentClient.EndGameInteraction();
     }
 
 
