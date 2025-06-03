@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         // Iniciar la corutina de spawn continuo
+        SpawnPrefab();
         StartCoroutine(SpawnLoop());
     }
 
