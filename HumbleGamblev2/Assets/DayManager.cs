@@ -21,7 +21,7 @@ public class DayManager : MonoBehaviour
     //public Light directionalLight;
 
     [Header("Settings")]
-    [Description("En segundos")]
+    //[Description("En segundos")]
     public float dayTime = 360;
     public int dayTotal = 999;
 
