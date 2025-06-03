@@ -10,8 +10,10 @@ public class DayManager : MonoBehaviour
 
     [Header("References")]
     public GameObject endDayCanvas;
+    public GameObject openShopMenuCanvas;
     public GameObject shopMenuCanvas;
     public GameObject tipNextDay;
+    
     public AudioSource doorBell;
     public AudioSource alarmWatch;
 
@@ -70,7 +72,8 @@ public class DayManager : MonoBehaviour
     void Start()
     {
         endDayCanvas.SetActive(false);
-        shopMenuCanvas.SetActive(true);
+        shopMenuCanvas.SetActive(false);
+        openShopMenuCanvas.SetActive(true);
 
         tipNextDay.SetActive(false);
     }
@@ -98,6 +101,7 @@ public class DayManager : MonoBehaviour
                     //Recargar
                     endDayCanvas.SetActive(true);
                     shopMenuCanvas.SetActive(false);
+                    openShopMenuCanvas.SetActive(false);
                     if (money > 0)
                     {
                         totalMoneyTMP.color = greenMoneyColor;
@@ -209,5 +213,27 @@ public class DayManager : MonoBehaviour
             FadeToBlackController.instance.DoFade();
         }
         hasWin = true;
+    }
+
+    public void ToggleShop()
+    {
+        if (shopMenuCanvas.activeInHierarchy)
+        {
+            HideShop();
+        }
+        else
+        {
+            OpenShop();
+        }
+    }
+
+    public void OpenShop()
+    {
+        shopMenuCanvas.SetActive(true);
+    }
+
+    public void HideShop()
+    {
+        shopMenuCanvas.SetActive(false);
     }
 }
