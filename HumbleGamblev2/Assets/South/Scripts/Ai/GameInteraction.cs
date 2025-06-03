@@ -17,8 +17,11 @@ public class GameInteraction : MonoBehaviour
 
     public ActiveRagdollWalker activeRagdollWalker;
 
+    public GameObject blackJackPointer;
+
     void Start()
     {
+        blackJackPointer.SetActive(false);
         rb = this.GetComponent<Rigidbody>();
 
         nPCMoveScript = GetComponent<NPCMove>();
@@ -41,6 +44,7 @@ public class GameInteraction : MonoBehaviour
             {
                 moneyToBet = UnityEngine.Random.Range(minMoneyToBet, maxMoneyToBet + 1);
                 script.startGame(this.GetComponent<GameInteraction>(), moneyToBet);
+                blackJackPointer.SetActive(true);
                 currentGame = "BlackJackTable";
                 activeRagdollWalker.enabled = false;
             }
@@ -61,5 +65,6 @@ public class GameInteraction : MonoBehaviour
     public void EndGameInteraction()
     {
         activeRagdollWalker.enabled = true;
+        blackJackPointer.SetActive(false);
     }
 }
