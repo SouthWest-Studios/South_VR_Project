@@ -127,10 +127,14 @@ public class DayManager : MonoBehaviour
             //Cambiar a derrota
             if (hasWin)
             {
+                Destroy(this, 0.01f);
+                FadeToBlackController.instance.fadeToBlackDoned = false;
                 SceneManager.LoadScene("VictoryScene");
             }
             else
             {
+                Destroy(this, 0.01f);
+                FadeToBlackController.instance.fadeToBlackDoned = false;
                 SceneManager.LoadScene("DefeatScene");
             }
         }

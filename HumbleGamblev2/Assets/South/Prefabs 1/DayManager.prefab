@@ -48,10 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endDayCanvas: {fileID: 0}
   shopMenuCanvas: {fileID: 0}
+  tipNextDay: {fileID: 0}
   doorBell: {fileID: 873013590682696636}
   alarmWatch: {fileID: 1798370258628439623}
   totalMoneyTMP: {fileID: 0}
-  dayTime: 5
+  dayTime: 360
   dayTotal: 9999
   startingMinutesOffset: 17
   greenMoneyColor: {r: 0.05273228, g: 0.745283, b: 0.22097903, a: 1}
