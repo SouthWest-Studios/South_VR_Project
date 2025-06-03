@@ -35,27 +35,31 @@ public class buyMenu : MonoBehaviour
         switch (num)
         {
             case 0:
-                if(DayManager.instance.money >= 200)
+                if(DayManager.instance.money >= 200 && !slot1.activeInHierarchy)
                 {
                     slot1.SetActive(true);
+                    DayManager.instance.money -= 200;
                 }
                 break;
             case 1:
-                if (DayManager.instance.money >= 300)
+                if (DayManager.instance.money >= 300 && !slot2.activeInHierarchy)
                 {
                     slot2.SetActive(true);
+                    DayManager.instance.money -= 300;
                 }
                 break;
             case 2:
-                if (DayManager.instance.money >= 400)
+                if (DayManager.instance.money >= 400 && !slot3.activeInHierarchy)
                 {
                     slot3.SetActive(true);
+                    DayManager.instance.money -= 400;
                 }
                 break;
             case 3:
                 if (DayManager.instance.money >= 1000)
                 {
                     slot3.SetActive(true);
+                    DayManager.instance.money -= 1000;
                 }
                 break;
             default:
