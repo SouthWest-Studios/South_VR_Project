@@ -198,7 +198,8 @@ public class DayManager : MonoBehaviour
         needChangeDay = false;
         timeCounter = 0;
         endDayCanvas.SetActive(false);
-        shopMenuCanvas.SetActive(true);
+        shopMenuCanvas.SetActive(false);
+        openShopMenuCanvas.SetActive(true);
         tipNextDay.SetActive(false);
 
         doorBell.Play();

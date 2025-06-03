@@ -60,6 +60,7 @@ public class buyMenu : MonoBehaviour
                 {
                     slot3.SetActive(true);
                     DayManager.instance.money -= 1000;
+                    DayManager.instance.BuyFinalCasino();
                 }
                 break;
             default:

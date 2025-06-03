@@ -16,7 +16,7 @@ public class DefeatSceneManager : MonoBehaviour
     {
         if (FadeToBlackController.instance.fadeToBlackDoned)
         {
-            SceneManager.LoadScene("MartiScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 
