@@ -57,7 +57,7 @@ public class SlotCylinderScript : MonoBehaviour
                 {
                     transform.localRotation = Quaternion.Euler(0f, 180f, 180f);
                 }
-                
+
             }
             else if (currentResult == 1)
             {

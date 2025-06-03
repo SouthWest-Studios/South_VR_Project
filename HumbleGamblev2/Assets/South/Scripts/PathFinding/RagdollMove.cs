@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.AI;  // 引入 NavMesh
+using System.Collections.Generic;
 
 public class ActiveRagdollWalker : MonoBehaviour
 {
@@ -26,9 +28,11 @@ public class ActiveRagdollWalker : MonoBehaviour
     public float footGroundForce = 150f;
 
     [Header("Pathfinding Settings")]
-    public Transform target;
-    public Transform destination2;
-    public bool usePathfinding = true;
+    [Tooltip("Lista de destinos a alcanzar en orden")]
+    public List<Transform> targets = new List<Transform>();
+    [Tooltip("是否启用自动寻路")]
+    public bool usePathfinding = true;     // 开关：true时自动沿路径移动，false则依赖手动输入
+    [Tooltip("路径重算时间间隔（秒）")]
     public float pathRecalcInterval = 0.5f;
     public float waypointThreshold = 0.5f;
     public float destinationThreshold = 1f;
@@ -36,17 +40,28 @@ public class ActiveRagdollWalker : MonoBehaviour
     private NavMeshPath navPath;
     private int currentCornerIndex = 1;
     private float pathRecalcTimer = 0f;
-    private bool hasReachedFirstTarget;
-    private Transform currentTarget;
+    private int currentTargetIndex = 0;
+    private Transform currentTarget => (currentTargetIndex < targets.Count) ? targets[currentTargetIndex] : null;
+
+
+    private PlayerInputActions inputActions;
+    private Vector2 moveInput;
+    private bool isSprinting;
     private float gaitCycle;
     private Vector3 moveDirection;
+
 
     void Awake()
     {
         navPath = new NavMeshPath();
         pathRecalcTimer = pathRecalcInterval;
-        currentTarget = target;
-        hasReachedFirstTarget = false;
+
+        if (targets.Count == 0)
+        {
+            usePathfinding = false;
+            Debug.LogWarning("No targets assigned!");
+        }
+
     }
 
     void FixedUpdate()
@@ -79,19 +94,21 @@ public class ActiveRagdollWalker : MonoBehaviour
 
                 if (finalDistance < destinationThreshold)
                 {
-                    if (!hasReachedFirstTarget)
+                    if (finalDistance < destinationThreshold)
                     {
-                        hasReachedFirstTarget = true;
-                        currentTarget = destination2;
-                        pathRecalcTimer = 0;
+                        currentTargetIndex++;
+
+                        if (currentTargetIndex >= targets.Count)
+                        {
+                            usePathfinding = false;
+                            Destroy(gameObject);
+                            return;
+                        }
+
+                        pathRecalcTimer = 0f; // recalcula de inmediato
                         currentCornerIndex = 1;
                     }
-                    else
-                    {
-                        usePathfinding = false;
-                        Destroy(gameObject);
-                        return;
-                    }
+
                 }
                 else
                 {
@@ -187,10 +204,17 @@ public class ActiveRagdollWalker : MonoBehaviour
         }
     }
 
-    public void SetCurrentTarget(Transform newTarget)
+    public void SetCurrentTargetByIndex(int index)
     {
-        currentTarget = newTarget;
-        pathRecalcTimer = 0;
-        currentCornerIndex = 1;
+        if (targets != null && index >= 0 && index < targets.Count)
+        {
+            currentTargetIndex = index;
+        }
+        else
+        {
+            Debug.LogWarning("Índice fuera de rango o lista de targets vacía.");
+        }
     }
+
+
 }

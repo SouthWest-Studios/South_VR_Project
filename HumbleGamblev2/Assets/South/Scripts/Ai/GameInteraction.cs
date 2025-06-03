@@ -15,11 +15,15 @@ public class GameInteraction : MonoBehaviour
 
     string currentGame = "";
 
+    public ActiveRagdollWalker activeRagdollWalker;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
 
         nPCMoveScript = GetComponent<NPCMove>();
+
+        
     }
 
     // Update is called once per frame
@@ -33,18 +37,29 @@ public class GameInteraction : MonoBehaviour
         if (other.CompareTag("BlackJackTable"))
         {
             BlackJackScript script = other.gameObject.GetComponent<BlackJackScript>();
-            if(script.gameStarted == false && currentGame != "BlackJackTable")
+            if (script.gameStarted == false && currentGame != "BlackJackTable")
             {
-                print("bbbbbbbbbbb");
                 moneyToBet = UnityEngine.Random.Range(minMoneyToBet, maxMoneyToBet + 1);
                 script.startGame(this.GetComponent<GameInteraction>(), moneyToBet);
-                currentGame = other.tag;
+                currentGame = "BlackJackTable";
+                activeRagdollWalker.enabled = false;
+            }
+        }
+        else if (other.CompareTag("Slot"))
+        {
+            SlotMachineScript script = other.gameObject.GetComponent<SlotMachineScript>();
+            if (script.gameRunning == false && currentGame != "Slot")
+            {
+                moneyToBet = UnityEngine.Random.Range(minMoneyToBet, maxMoneyToBet + 1);
+                script.StartGame(this.GetComponent<GameInteraction>(), moneyToBet);
+                currentGame = "Slot";
+                activeRagdollWalker.enabled = false;
             }
         }
     }
 
     public void EndGameInteraction()
     {
-        nPCMoveScript.hasEndedInteractingWithTarget = true;
+        activeRagdollWalker.enabled = true;
     }
 }
