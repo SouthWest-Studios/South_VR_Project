@@ -19,6 +19,7 @@ public class SlotCylinderScript : MonoBehaviour
     public SlotSymbol currentSymbol;
 
     bool grabing = false;
+    bool grabed = false;
 
     public bool normalSpinDone = false;
 
@@ -31,24 +32,29 @@ public class SlotCylinderScript : MonoBehaviour
         if (rb.useGravity == false)
         {
             grabing = true;
+            grabed = true;
             normalSpinDone = false;
         }
     }
 
     public void SetCurrentResult(int result)
     {
-        if (rb.angularVelocity.magnitude < 5f && rb.angularVelocity.magnitude > 0.5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
+        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
         {
             spiningSlotAudio.loop = false;
             spiningSlotAudio.Stop();
+            if (rb.angularVelocity.magnitude > 0.5 || grabing)
+            {
+                currentResult = result;
+            }
+            
             rb.angularVelocity = Vector3.zero;
-            currentResult = result;
             Vector3 eulerRotation = rb.rotation.eulerAngles;
 
 
             if (currentResult == 2)
             {
-                if (grabing == true)
+                if (grabed == true)
                 {
                     transform.localRotation = Quaternion.Euler(0f, 180, 180f);
 
@@ -61,7 +67,7 @@ public class SlotCylinderScript : MonoBehaviour
             }
             else if (currentResult == 1)
             {
-                if (grabing == true)
+                if (grabed == true)
                 {
                     transform.localRotation = Quaternion.Euler(180f, 180, 180f);
 
@@ -73,7 +79,7 @@ public class SlotCylinderScript : MonoBehaviour
             }
             else if (currentResult == 3)
             {
-                if (grabing == true)
+                if (grabed == true)
                 {
                     transform.localRotation = Quaternion.Euler(90f, 180, 180f);
 
@@ -85,7 +91,7 @@ public class SlotCylinderScript : MonoBehaviour
             }
             else if (currentResult == 4)
             {
-                if (grabing == true)
+                if (grabed == true)
                 {
                     transform.localRotation = Quaternion.Euler(270f, 180, 180f);
 
@@ -97,6 +103,7 @@ public class SlotCylinderScript : MonoBehaviour
             }
 
             normalSpinDone = true;
+            grabing = false;
         }
 
     }
