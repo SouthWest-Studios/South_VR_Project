@@ -99,6 +99,7 @@ public class DayManager : MonoBehaviour
                 else
                 {
                     //Recargar
+                    Spawner.instance.stopSpawn();
                     endDayCanvas.SetActive(true);
                     shopMenuCanvas.SetActive(false);
                     openShopMenuCanvas.SetActive(false);
@@ -201,7 +202,7 @@ public class DayManager : MonoBehaviour
         shopMenuCanvas.SetActive(false);
         openShopMenuCanvas.SetActive(true);
         tipNextDay.SetActive(false);
-
+        Spawner.instance.startSpawnLoop();
         doorBell.Play();
         
         

@@ -18,11 +18,30 @@ public class Spawner : MonoBehaviour
     [Header("Spawn offset")]
     public Vector3 spawnOffset = Vector3.zero;
 
+    public static Spawner instance;
+
+    public Coroutine actualCoroutine;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         // Iniciar la corutina de spawn continuo
+        startSpawnLoop();
+    }
+
+    public void startSpawnLoop()
+    {
         SpawnPrefab();
-        StartCoroutine(SpawnLoop());
+        actualCoroutine = StartCoroutine(SpawnLoop());
+    }
+
+    public void stopSpawn()
+    {
+        StopCoroutine(actualCoroutine);
     }
 
     IEnumerator SpawnLoop()
