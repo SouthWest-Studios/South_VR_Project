@@ -58,7 +58,7 @@ public class ActiveRagdollWalker : MonoBehaviour
 
         if (targets.Count == 0)
         {
-            usePathfinding = false;
+            //usePathfinding = false;
             Debug.LogWarning("No targets assigned!");
         }
 

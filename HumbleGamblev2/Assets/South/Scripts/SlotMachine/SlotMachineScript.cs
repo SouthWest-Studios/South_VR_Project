@@ -135,7 +135,7 @@ public class SlotMachineScript : MonoBehaviour
             winPriezeSound.Play();
             Debug.Log("¡Jackpot! Tres sietes!");
             hasWon = true;
-            DayManager.instance.money += betAmount * 5;
+            DayManager.instance.money -= betAmount * 5;
             //Instantiate(cash, this.transform.position + new Vector3(5, 0, 5), Quaternion.identity);
         }
         else
@@ -148,7 +148,7 @@ public class SlotMachineScript : MonoBehaviour
                     Debug.Log(" ¡Premio por 3 frutas iguales!");
                     //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                     hasWon = true;
-                    DayManager.instance.money += betAmount * 3;
+                    DayManager.instance.money -= betAmount * 3;
                     break;
                 }
             }
@@ -184,7 +184,7 @@ public class SlotMachineScript : MonoBehaviour
             {
                 winPriezeSound.Play();
                 Debug.Log("¡Victoria por 3 frutas diferentes!");
-                DayManager.instance.money += betAmount * 2;
+                DayManager.instance.money -= betAmount * 2;
                 //Instantiate(cash, this.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
                 hasWon = true;
             }
@@ -193,7 +193,7 @@ public class SlotMachineScript : MonoBehaviour
         if (!hasWon)
         {
             Debug.Log("Derrota");
-            
+            DayManager.instance.money += betAmount;
         }
 
         // Reset

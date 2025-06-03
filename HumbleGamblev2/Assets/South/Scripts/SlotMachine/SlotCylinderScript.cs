@@ -37,7 +37,7 @@ public class SlotCylinderScript : MonoBehaviour
 
     public void SetCurrentResult(int result)
     {
-        if (rb.angularVelocity.magnitude < 5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
+        if (rb.angularVelocity.magnitude < 5f && rb.angularVelocity.magnitude > 0.5f && slotMachineScript.gameRunning && rb.useGravity == true && normalSpinDone == false)
         {
             spiningSlotAudio.loop = false;
             spiningSlotAudio.Stop();

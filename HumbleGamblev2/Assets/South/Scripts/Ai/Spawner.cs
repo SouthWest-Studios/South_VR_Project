@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
@@ -6,22 +7,31 @@ public class Spawner : MonoBehaviour
     [Header("Prefab list (can add multiple)")]
     public List<GameObject> prefabList;
 
-    [Header("Spawn control")]
-    public bool spawn = false;
+    [Header("Spawn timing")]
+    public float minSpawnInterval = 2f;
+    public float maxSpawnInterval = 5f;
 
     [Header("Values to assign")]
     public Camera cameraToAssign;
-    public List<Transform> targetList; // ← Nueva lista de objetivos
+    public List<Transform> targetList;
 
     [Header("Spawn offset")]
     public Vector3 spawnOffset = Vector3.zero;
 
-    void Update()
+    void Start()
     {
-        if (spawn)
+        // Iniciar la corutina de spawn continuo
+        StartCoroutine(SpawnLoop());
+    }
+
+    IEnumerator SpawnLoop()
+    {
+        while (true)
         {
+            float waitTime = Random.Range(minSpawnInterval, maxSpawnInterval);
+            yield return new WaitForSeconds(waitTime);
+
             SpawnPrefab();
-            spawn = false; // Spawn only once
         }
     }
 
@@ -45,16 +55,12 @@ public class Spawner : MonoBehaviour
         ActiveRagdollWalker script = instance.GetComponent<ActiveRagdollWalker>();
         if (script != null)
         {
-            script.playerCamera = cameraToAssign;
 
-            // Asignar lista completa de targets
             script.targets = new List<Transform>(targetList);
 
-            // Asignar el primer objetivo como objetivo actual si hay alguno
             if (script.targets.Count > 0)
             {
                 script.SetCurrentTargetByIndex(0);
-
             }
         }
         else

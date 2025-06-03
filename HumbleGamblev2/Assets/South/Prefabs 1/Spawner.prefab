@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &121223165289290770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442784498027359173}
+  - component: {fileID: 6412208576834996219}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &442784498027359173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121223165289290770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.19, y: 0.56, z: 5.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6412208576834996219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121223165289290770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270e77ba697c8eb4e9953ffb6d4e1e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabList:
+  - {fileID: 6062238926661029806, guid: f06673d3fdb7a8845ba60d548985c95e, type: 3}
+  - {fileID: 6062238926661029806, guid: 7fbcda75018b68a4885bda94c6c05b00, type: 3}
+  - {fileID: 6062238926661029806, guid: a34ae499e557b7e4498dc3b684dc75c3, type: 3}
+  - {fileID: 6062238926661029806, guid: ef2f0420234267c42812e2e9410a003b, type: 3}
+  - {fileID: 6062238926661029806, guid: 73a1b3f23428126478ba95349dbcf314, type: 3}
+  - {fileID: 6062238926661029806, guid: c1b72f00a86aa1a4a9352fc3e3366ab5, type: 3}
+  - {fileID: 6062238926661029806, guid: 9f22dec5aad102745aa6b23097aaf0e7, type: 3}
+  - {fileID: 6062238926661029806, guid: d30045cfaaa51e44fb1d28d1b73e830e, type: 3}
+  minSpawnInterval: 1
+  maxSpawnInterval: 5
+  cameraToAssign: {fileID: 0}
+  targetList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 442784498027359173}
+  spawnOffset: {x: 0, y: 0, z: 0}
